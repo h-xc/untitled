@@ -25,11 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        Public/ModelView/settingpanel.cpp \
         main.cpp \
         mainwindow.cpp \
         qqSetUp/qqsetup.cpp
 
 HEADERS += \
+        Public/ModelView/settingpanel.h \
         mainwindow.h \
         qqSetUp/qqsetup.h
 
