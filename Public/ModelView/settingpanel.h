@@ -7,6 +7,18 @@
 #include <QScrollArea>
 #include <QPushButton>
 
+#define TITLE_HEIGHT    35
+
+#define TAB_WIDGET_TOP  TITLE_HEIGHT
+
+#define CONTENTS_TOP    (TAB_WIDGET_TOP + 36)
+#define CONTENTS_WIDTE  130
+
+#define SCROLL_TOP      CONTENTS_TOP + 1
+#define SCROLL_LEFT     CONTENTS_WIDTE + 1
+
+
+
 class SettingPanel : public QWidget
 {
     Q_OBJECT
@@ -52,7 +64,7 @@ private:
     QWidget *qqlockWidget;
 
     QWidget *spaceWidget;
-    bool signFlag;
+    bool signFlag;   // 标记是使用目录窗口更新滚动窗口
 };
 
 #endif // SETTINGPANEL_H

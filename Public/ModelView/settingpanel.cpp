@@ -10,6 +10,8 @@
 #include <QScrollBar>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QDesktopWidget>
+
 
 SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , mousePress(false)
@@ -22,7 +24,8 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , qqlockWidget(NULL)
   , spaceWidget(NULL)
 {
-    resize(700, 500);
+    resize(700, 500); // 设置窗口大小
+
     setStyleSheet("QCheckBox{font-family:arial;font-size:13px;border-radius:2px;color:#000000;}"
                   "QCheckBox::indicator:checked{color:#FF0000}"
                   "QTabWidget::pane{border:none;}"
@@ -42,10 +45,11 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
                   "QComboBox::down-arrow:on {top: 1px;left: 1px;}"
                   "QComboBox QAbstractItemView::item{max-width:30px;min-height:20px;}"
                   );
-    rectMove = QRect(0, 0, width(), 35);
+    rectMove = QRect(0, 0, width(), TITLE_HEIGHT);   // 设置标题栏大小
 
+    /*选项卡初始化*/
     tabWidget = new QTabWidget(this);
-    tabWidget->setFocusPolicy(Qt::NoFocus);
+    tabWidget->setFocusPolicy(Qt::NoFocus);   //
     QWidget *tab1 = new QWidget(this);
     tab1->setStyleSheet("background:#FFFFFF");
     QWidget *tab2 = new QWidget(this);
@@ -57,10 +61,12 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     tabWidget->addTab(tab3, QIcon(":/status.png"), tr("power setting"));
     tabWidget->setCurrentIndex(0);
 
+    /*目录列表初始化*/
     contentsWidget = new QListWidget(this);
     contentsWidget->setFocusPolicy(Qt::NoFocus);
     connect(contentsWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(slotItemClicked(QListWidgetItem*)));
 
+    /*滚动窗口初始化*/
     scrollArea = new QScrollArea(this);
     scrollArea->setStyleSheet("QScrollArea{background:transparent;}"
                               "QScrollBar::vertical{background:#35A739;border:-5px solid grey;margin:-2px 0px 0px 0px;width:8px;}"
@@ -72,22 +78,22 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     scrollArea->setFocusPolicy(Qt::NoFocus);
-    connect(scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int)));
+    connect(scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int))); // 滚动事件
    // connect(scrollArea, SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int)));
 
-    connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(slotCurrentChanged(int)));
+    connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(slotCurrentChanged(int)));  // 选项卡改变事件
     slotCurrentChanged(0);
 
     // minButton = new EPushButton(this);
     // minButton->setPixName(":/min");
     // minButton->setToolTip(tr("minimize"));
-    minButton = new QPushButton(this);
+    minButton = new QPushButton(this);   // 最小化按钮
     connect(minButton, SIGNAL(clicked()), this, SLOT(showMinimized()));
 
     //closeButton = new EPushButton(this);
     // closeButton->setPixName(":/close");
     // closeButton->setToolTip(tr("close"));
-    closeButton = new QPushButton(this);
+    closeButton = new QPushButton(this);   // 关闭按钮
     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
 
 }
@@ -100,11 +106,11 @@ SettingPanel::~SettingPanel()
 
 void SettingPanel::resizeEvent(QResizeEvent *event)
 {
-    tabWidget->setGeometry(0, 35, this->width(), this->height() - 35);
-    contentsWidget->setGeometry(0, 71, 130, this->height() - 71);
-    scrollArea->setGeometry(131, 72, this->width() - 132, this->height() - 73);
-    minButton->move(width() - 27 - closeButton->width(), 6);
-    closeButton->move(width() - 27, 6);
+    tabWidget->setGeometry(0, TAB_WIDGET_TOP, this->width(), this->height() - TAB_WIDGET_TOP);  // 设置选项卡窗口的绘制位置和大小
+    contentsWidget->setGeometry(0, CONTENTS_TOP, CONTENTS_WIDTE, this->height() - CONTENTS_TOP);       // 设置目录窗口的绘制位置和大小
+    scrollArea->setGeometry(SCROLL_LEFT, SCROLL_TOP, this->width() - SCROLL_LEFT, this->height() - SCROLL_TOP);  // 设置滚动窗口的绘制位置和大小
+    minButton->move(width() - 27 - closeButton->width(), 6);            // 移动最小化窗口按钮的位置
+    closeButton->move(width() - 27, 6);                                 // 移动关闭窗口按钮的位置
     //move((QApplication::desktop()->width() - width())/2,  (QApplication::desktop()->height() - height())/2);
     QWidget::resizeEvent(event);
 }
@@ -299,9 +305,9 @@ void SettingPanel::initTabOneWidget()
     etenth->setText(tr("combine the session window"));
     etenth->setGeometry(100, 270, 300, 30);
     etenth->show();
-    sessionWidget->setGeometry(0, 540, 555, 300 + 127);
+    sessionWidget->setGeometry(0, 540, 555, 300);
 
-    widgetScrollArea->resize(555, 840+127);
+    widgetScrollArea->resize(555, 840);
 }
 
 void SettingPanel::initTabTwoWidget()
@@ -420,8 +426,9 @@ void SettingPanel::initTabThreeWidget()
 
 void SettingPanel::slotCurrentChanged(int index)
 {
-    contentsWidget->clear();
-    scrollArea->takeWidget();
+    contentsWidget->clear();     // 清除目录窗口
+    scrollArea->takeWidget();    //
+
     loginWidget = NULL;
     panelWidget = NULL;
     statusWidget = NULL;
@@ -432,6 +439,7 @@ void SettingPanel::slotCurrentChanged(int index)
 
     widgetScrollArea = new QWidget(this);
     widgetScrollArea->setStyleSheet("background:transparent;");
+
     scrollArea->setWidget(widgetScrollArea);
     if (index == 0) {
         contentsWidget->addItem(tr("login"));
@@ -498,7 +506,7 @@ void SettingPanel::slotValueChanged(int value)
         QListWidgetItem *sessionItem = contentsWidget->item(3);
         if (!signFlag) {
             if (loginWidget && panelWidget && statusWidget && sessionWidget) {
-                if (!loginWidget->visibleRegion().isEmpty()) {
+                if (!loginWidget->visibleRegion().isEmpty()) {   // 可见范围不为空
                     loginItem->setSelected(true);
                     return;
                 }
@@ -557,12 +565,15 @@ void SettingPanel::slotValueChanged(int value)
 void SettingPanel::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
+
     painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor("#F0F0F0"));
+    painter.setBrush(QColor("#F0F0F0")); // 将整个背景渲染成灰白色
     painter.drawRect(this->rect());
-    painter.setBrush(QColor("#069dd5"));
-    painter.drawRect(rectMove);
-    painter.setPen(QColor("#D7D7D7"));
+
+    painter.setBrush(QColor("#069dd5")); //  标题背景色为蓝色
+    painter.drawRect(rectMove);/*画标题栏*/
+
+    painter.setPen(QColor("#D7D7D7"));     // 目录栏背景色
     painter.drawLine(0, 70, this->width(), 70);
     QWidget::paintEvent(event);
 }
