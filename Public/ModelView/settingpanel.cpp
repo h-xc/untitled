@@ -11,7 +11,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QDesktopWidget>
-
+#include <QDebug>
 
 SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , mousePress(false)
@@ -24,7 +24,7 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , qqlockWidget(NULL)
   , spaceWidget(NULL)
 {
-    resize(700, 500); // 设置窗口大小
+    resize(parent->size()); // 设置窗口大小
 
     setStyleSheet("QCheckBox{font-family:arial;font-size:13px;border-radius:2px;color:#000000;}"
                   "QCheckBox::indicator:checked{color:#FF0000}"
@@ -56,9 +56,9 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     tab2->setStyleSheet("background:#FFFFFF");
     QWidget *tab3 = new QWidget(this);
     tab3->setStyleSheet("background:#FFFFFF");
-    tabWidget->addTab(tab1, QIcon(":/setting.png"),tr("base setting"));
+    tabWidget->addTab(tab1, QIcon(":/qqSetUp/Image/OPTIONS"),tr("base setting"));
     tabWidget->addTab(tab2, QIcon(":/home.png"), tr("secure setting"));
-    tabWidget->addTab(tab3, QIcon(":/status.png"), tr("power setting"));
+    tabWidget->addTab(tab3, QIcon(":/qqSetUp/Image/LOCK"), tr("power setting"));
     tabWidget->setCurrentIndex(0);
 
     /*目录列表初始化*/
@@ -80,21 +80,22 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     scrollArea->setFocusPolicy(Qt::NoFocus);
     connect(scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int))); // 滚动事件
    // connect(scrollArea, SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int)));
-
     connect(tabWidget, SIGNAL(currentChanged(int)), this, SLOT(slotCurrentChanged(int)));  // 选项卡改变事件
+
     slotCurrentChanged(0);
 
     // minButton = new EPushButton(this);
     // minButton->setPixName(":/min");
     // minButton->setToolTip(tr("minimize"));
     minButton = new QPushButton(this);   // 最小化按钮
-    connect(minButton, SIGNAL(clicked()), this, SLOT(showMinimized()));
+    connect(minButton, SIGNAL(clicked()), parent, SLOT(showMinimized()));
 
     //closeButton = new EPushButton(this);
-    // closeButton->setPixName(":/close");
+    // closeButton->setPixName(":/qqSetup/close");
     // closeButton->setToolTip(tr("close"));
     closeButton = new QPushButton(this);   // 关闭按钮
-    connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
+    closeButton->setIcon(QIcon(":/qqSetup/close"));
+    connect(closeButton, SIGNAL(clicked()), parent, SLOT(close()));
 
 }
 
@@ -111,6 +112,7 @@ void SettingPanel::resizeEvent(QResizeEvent *event)
     scrollArea->setGeometry(SCROLL_LEFT, SCROLL_TOP, this->width() - SCROLL_LEFT, this->height() - SCROLL_TOP);  // 设置滚动窗口的绘制位置和大小
     minButton->move(width() - 27 - closeButton->width(), 6);            // 移动最小化窗口按钮的位置
     closeButton->move(width() - 27, 6);                                 // 移动关闭窗口按钮的位置
+    //qDebug() << scrollArea->width();
     //move((QApplication::desktop()->width() - width())/2,  (QApplication::desktop()->height() - height())/2);
     QWidget::resizeEvent(event);
 }
@@ -125,7 +127,7 @@ void SettingPanel::initTabOneWidget()
     label->setGeometry(30, 10, 50, 30);
     label->show();
     QCheckBox *first = new QCheckBox(loginWidget);
-    first->setFocusPolicy(Qt::NoFocus);
+    //first->setFocusPolicy(Qt::NoFocus);
     first->setText(tr("start QQ when starting"));
     first->setGeometry(100, 10, 300, 30);
     first->show();
@@ -307,7 +309,16 @@ void SettingPanel::initTabOneWidget()
     etenth->show();
     sessionWidget->setGeometry(0, 540, 555, 300);
 
-    widgetScrollArea->resize(555, 840);
+    if(300 > scrollArea->height())
+    {
+        widgetScrollArea->resize(555, 840 );
+    }
+    else
+    {
+        widgetScrollArea->resize(555, 540 +  scrollArea->height());
+    }
+
+
 }
 
 void SettingPanel::initTabTwoWidget()
@@ -379,7 +390,17 @@ void SettingPanel::initTabTwoWidget()
     secondRadio->setGeometry(100, 40, 300, 30);
     secondRadio->show();
     qqlockWidget->setGeometry(0, 190, 555, 70);
-    widgetScrollArea->resize(555, 190+70+360);
+    widgetScrollArea->resize(555, 190+70);
+
+    if(70 > scrollArea->height())
+    {
+        widgetScrollArea->resize(555, 190 );
+    }
+    else
+    {
+        widgetScrollArea->resize(555, 190 +  scrollArea->height());
+    }
+
 }
 
 void SettingPanel::initTabThreeWidget()
@@ -422,6 +443,15 @@ void SettingPanel::initTabThreeWidget()
     five->show();
     spaceWidget->setGeometry(0, 0, 555, 160);
     widgetScrollArea->resize(555, 160);
+
+    if(0 > scrollArea->height())
+    {
+        widgetScrollArea->resize(555, 0 );
+    }
+    else
+    {
+        widgetScrollArea->resize(555, 0 +  scrollArea->height());
+    }
 }
 
 void SettingPanel::slotCurrentChanged(int index)

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/qqSetup">
+        <file alias="lock">qqSetUp/Image/lock.png</file>
+        <file alias="options">qqSetUp/Image/options.png</file>
+        <file alias="close">qqSetUp/Image/close.png</file>
+    </qresource>
+</RCC>
