@@ -12,6 +12,7 @@
 #include <QMouseEvent>
 #include <QDesktopWidget>
 #include <QDebug>
+#include <QAbstractItemDelegate>
 
 SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , mousePress(false)
@@ -26,25 +27,38 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
 {
     resize(parent->size()); // 设置窗口大小
 
-    setStyleSheet("QCheckBox{font-family:arial;font-size:13px;border-radius:2px;color:#000000;}"
-                  "QCheckBox::indicator:checked{color:#FF0000}"
-                  "QTabWidget::pane{border:none;}"
-                  "QTabWidget::tab-bar{alignment:left;}"
-                  "QTabBar::tab{background:transparent;color:#000000;min-width:100px;min-height:35px;}"
-                  "QTabBar::tab:hover{background:rgb(255, 255, 255, 255);}"
-                  "QTabBar::tab:selected{border-color: white;color:green;padding-left:5px}"
-                  "QListWidget{background:rgba(240,240,240,255);color:#000000;border:0px solid gray;padding:0px;}"
-                  "QListWidget::item{width:94px;height:38px;border:0px solid gray;padding-left:24px;}"
-                  "QListWidget::item:selected:active{background:#FFFFFF;color:#19649F;border-width:-1;}"
-                  "QListWidget::item:selected{background:#FFFFFF;color:#19649F;}"
-                  "QLabel,QRadioButton{background:transparent;color:#000000;font-family:arial;font-size:13px;}"
+//    QFile file(".\\dracula.css");
+//    file.open(QFile::ReadOnly);
+//    if (file.isOpen())
+//    {
+//        QString styleSheet = this->styleSheet();
+//        styleSheet += QLatin1String(file.readAll());//读取样式表文件
+//        this->setStyleSheet(styleSheet);//把文件内容传参
+//        file.close();
+//    }
 
-                  "QComboBox{border:1px solid #d7d7d7; border-radius: 3px; padding: 1px 3px 1px 3px;}"
-                  "QComboBox:editable{background:transparent;}"
-                  "QComboBox:!editable{background: #fbfbfb;color:#666666}"
-                  "QComboBox::down-arrow:on {top: 1px;left: 1px;}"
-                  "QComboBox QAbstractItemView::item{max-width:30px;min-height:20px;}"
-                  );
+
+//    setStyleSheet("QCheckBox{font-family:arial;font-size:13px;border-radius:2px;color:#000000;}"
+//                  "QCheckBox::indicator:checked{color:#FF0000}"
+//                  "QTabWidget::pane{border:none;}"
+//                  "QTabWidget::tab-bar{alignment:left;}"
+//                  "QTabBar::tab{background:transparent;color:#000000;min-width:100px;min-height:35px;}"
+//                  "QTabBar::tab:hover{background:rgb(255, 255, 255, 255);}"
+//                  "QTabBar::tab:selected{border-color: white;color:green;padding-left:5px}"
+//                  "QListWidget{background:rgba(240,240,240,255);color:#000000;border:0px solid gray;padding:0px;}"
+//                  "QListWidget::item{width:94px;height:38px;border:0px solid gray;padding-left:24px;}"
+//                  "QListWidget::item:selected:active{background:#FFFFFF;color:#19649F;border-width:-1;}"
+//                  "QListWidget::item:selected{background:#FFFFFF;color:#19649F;}"
+//                  "QLabel,QRadioButton{background:transparent;color:#000000;font-family:arial;font-size:13px;}"
+
+//                  "QComboBox{border:1px solid #d7d7d7; border-radius: 3px; padding: 1px 3px 1px 3px;}"
+//                  "QComboBox:editable{background:transparent;}"
+//                  "QComboBox:!editable{background: #fbfbfb;color:#666666}"
+//                  "QComboBox::down-arrow:on {top: 1px;left: 1px;}"
+//                  "QComboBox QAbstractItemView::item{max-width:30px;min-height:20px;}"
+//                  );
+
+
     rectMove = QRect(0, 0, width(), TITLE_HEIGHT);   // 设置标题栏大小
 
     /*选项卡初始化*/
@@ -124,7 +138,7 @@ void SettingPanel::initTabOneWidget()
     loginWidget->show();
     QLabel *label = new QLabel(loginWidget);
     label->setText(tr("login:"));
-    label->setGeometry(30, 10, 50, 30);
+    label->setGeometry(30, 10, label->width(), label->height());
     label->show();
     QCheckBox *first = new QCheckBox(loginWidget);
     //first->setFocusPolicy(Qt::NoFocus);

@@ -17,7 +17,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_qqSetUp_clicked()
 {
-   qqSetUp *widget = new qqSetUp();
+   qqSetUp *widget = new qqSetUp;
+
    widget->setAttribute(Qt::WA_DeleteOnClose);
    widget->show();
 }

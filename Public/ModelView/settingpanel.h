@@ -6,6 +6,7 @@
 #include <QListWidgetItem>
 #include <QScrollArea>
 #include <QPushButton>
+#include ".\Public\ModelView\mydatawidgetmapper.h"
 
 #define TITLE_HEIGHT    35
 

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,13 +25,27 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        Public/ModelView/datastore.cpp \
+        Public/ModelView/item_delegate.cpp \
+        Public/ModelView/memitemmapper.cpp \
+        Public/ModelView/mydatawidgetmapper.cpp \
+        Public/ModelView/mydoublevalidator.cpp \
+        Public/ModelView/mylineedit.cpp \
         Public/ModelView/settingpanel.cpp \
+        Public/ModelView/widgetmappermodel.cpp \
         main.cpp \
         mainwindow.cpp \
         qqSetUp/qqsetup.cpp
 
 HEADERS += \
+        Public/ModelView/datastore.h \
+        Public/ModelView/item_delegate.h \
+        Public/ModelView/memitemmapper.h \
+        Public/ModelView/mydatawidgetmapper.h \
+        Public/ModelView/mydoublevalidator.h \
+        Public/ModelView/mylineedit.h \
         Public/ModelView/settingpanel.h \
+        Public/ModelView/widgetmappermodel.h \
         mainwindow.h \
         qqSetUp/qqsetup.h
 

@@ -2,7 +2,8 @@
 #define QQSETUP_H
 
 #include <QWidget>
-
+#include <QMap>
+#include <QStandardItemModel>
 namespace Ui {
 class qqSetUp;
 }
@@ -17,6 +18,8 @@ public:
 
 private:
     Ui::qqSetUp *ui;
+    bool fetchOfStore();
+    QMap<QString,QStandardItemModel*> m_Models;
 };
 
 #endif // QQSETUP_H
