@@ -51,6 +51,8 @@ bool qqSetUp::fetchOfStore()
 
     QStandardItem *item ;
     QStandardItemModel* WidgetModel;
+    m_Models.clear();
+    m_ModelsSort.clear();
 
     QDomElement DataBase = doc.documentElement(); //返回根节点
     for(QDomElement Data = DataBase.firstChildElement(); !Data.isNull(); Data = Data.nextSiblingElement())  //如果节点不空
@@ -58,6 +60,7 @@ bool qqSetUp::fetchOfStore()
         if(m_Models.find(Data.attribute("ModelName")) == m_Models.end())  // 判断的当前模型是否已经创建,若未创建，则创建并填入到
         {
             m_Models.insert(Data.attribute("ModelName"),new QStandardItemModel(this));
+            m_ModelsSort.append(Data.attribute("ModelName"));
         }
 
         WidgetModel = (QStandardItemModel*)(m_Models.value(Data.attribute("ModelName")));

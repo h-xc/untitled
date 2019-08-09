@@ -18,6 +18,7 @@ public:
     explicit qqSetUp(QWidget *parent = 0);
     ~qqSetUp();
     QMap<QString,QStandardItemModel*> m_Models;
+    QList<QString> m_ModelsSort;
 private:
     Ui::qqSetUp *ui;
     bool fetchOfStore();

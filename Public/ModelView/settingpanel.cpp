@@ -14,9 +14,10 @@
 #include <QDebug>
 #include <QAbstractItemDelegate>
 #include <QLineEdit>
+#include <QListWidgetItem>
 
 #include "./qqSetUp/qqsetup.h"
-#include "..\\Public\\ModelView\\item_delegate.h"
+#include "../Public/ModelView/item_delegate.h"
 
 
 SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
@@ -34,16 +35,17 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     resize(parent->size()); // 设置窗口大小
     qqSetUp*  widget= (qqSetUp*) parent;
     m_Models = &widget->m_Models;
+    m_ModelsSort = &widget->m_ModelsSort;
 
-//    QFile file(".\\dracula.css");
-//    file.open(QFile::ReadOnly);
-//    if (file.isOpen())
-//    {
-//        QString styleSheet = this->styleSheet();
-//        styleSheet += QLatin1String(file.readAll());//读取样式表文件
-//        this->setStyleSheet(styleSheet);//把文件内容传参
-//        file.close();
-//    }
+    QFile file(".\\dracula.css");
+    file.open(QFile::ReadOnly);
+    if (file.isOpen())
+    {
+        QString styleSheet = this->styleSheet();
+        styleSheet += QLatin1String(file.readAll());//读取样式表文件
+        this->setStyleSheet(styleSheet);//把文件内容传参
+        file.close();
+    }
 
 
 //    setStyleSheet("QCheckBox{font-family:arial;font-size:13px;border-radius:2px;color:#000000;}"
@@ -147,42 +149,48 @@ void SettingPanel::initTabOneWidget()
 
     ItemDelegate* Delegate;
     mydataWidgetMapper*  dataWidgetMapper;
-    QMap<QString, QStandardItemModel *>::const_iterator ModelPos = m_Models->constBegin();
-    for (; ModelPos != m_Models->constEnd(); ModelPos++) {
+    for (int listPos = 0; listPos < m_ModelsSort->size(); ++listPos) {
+        QStandardItemModel *model = m_Models->value(m_ModelsSort->at(listPos));
+        if(model == NULL)continue;
         X_SpacePos = X_START_POS;
         Y_SpacePos = Y_START_POS;
-
         QWidget  *Widget = new QWidget(widgetScrollArea);
+        //Widget->setStyleSheet("background:transparent");
         Widget->show();
         QLabel *contentsLabel = new QLabel(Widget);
-        contentsLabel->setText(ModelPos.key());
-        contentsLabel->move(X_SpacePos, Y_SpacePos);
+        contentsLabel->setText(m_ModelsSort->at(listPos));
+        contentsLabel->setGeometry(X_SpacePos, Y_SpacePos,500,contentsLabel->height());
+        contentsLabel->setStyleSheet("background:#8DB1E2");
         contentsLabel->show();
+
+        QListWidgetItem *contentsItem = new QListWidgetItem(m_ModelsSort->at(listPos));
+        contentsItem->setData(Qt::UserRole,Y_WidgetSpacePos);
+        contentsWidget->addItem(contentsItem);
 
         dataWidgetMapper = new mydataWidgetMapper(Widget);
         Delegate = new ItemDelegate(Widget);
         dataWidgetMapper->setItemDelegate(Delegate);
-        dataWidgetMapper->setModel(ModelPos.value());
+        dataWidgetMapper->setModel(model);
 
         Y_SpacePos += Y_SPACE;
 
-        for (int row = 0; row < ModelPos.value()->rowCount(); ++row) {
+        for (int row = 0; row < model->rowCount(); ++row) {
             X_SpacePos = X_START_POS;
-            for (int col = 0; col <ModelPos.value()->columnCount() ; ++col) {
+            for (int col = 0; col <model->columnCount() ; ++col) {
 
                 QLabel *NameLabel = NULL;
-                if(ModelPos.value()->index(row,col).data(NameRole).isValid()
-                        && ModelPos.value()->index(row,col).data(EditTypeRole).toInt() != CheckBox )
+                if(model->index(row,col).data(NameRole).isValid()
+                        && model->index(row,col).data(EditTypeRole).toInt() != CheckBox )
                 {
                     NameLabel = new QLabel(Widget);
-                    NameLabel->setText(ModelPos.value()->index(row,col).data(NameRole).toString());
+                    NameLabel->setText(model->index(row,col).data(NameRole).toString());
                     NameLabel->adjustSize();
                     NameLabel->setGeometry(X_SpacePos, Y_SpacePos,NameLabel->width()+10,NameLabel->height());
 
                     NameLabel->show();
                 }
 
-                if(ModelPos.value()->index(row,col).data(EditTypeRole).toInt() == ComboBox)
+                if(model->index(row,col).data(EditTypeRole).toInt() == ComboBox)
                 {
                     QComboBox *combox = new QComboBox(Widget);
                     dataWidgetMapper->addMapping(combox,row,col);
@@ -190,20 +198,20 @@ void SettingPanel::initTabOneWidget()
                     combox->move(NameLabel?X_SpacePos+NameLabel->width():X_SpacePos, Y_SpacePos);
                     combox->show();
                 }
-                else  if(ModelPos.value()->index(row,col).data(EditTypeRole).toInt() == CheckBox)
+                else  if(model->index(row,col).data(EditTypeRole).toInt() == CheckBox)
                 {
                     QCheckBox *checkBox = new QCheckBox(spaceWidget);
                     dataWidgetMapper->addMapping(checkBox,row,col);
                     //checkBox->setFocusPolicy(Qt::NoFocus);
-                    checkBox->setText(ModelPos.value()->index(row,col).data(NameRole).toString());
+                    checkBox->setText(model->index(row,col).data(NameRole).toString());
                     checkBox->move(X_SpacePos, Y_SpacePos);
                     checkBox->show();
                 }
-                else  if(ModelPos.value()->index(row,col).data(EditTypeRole).toInt() == LineEdit)
+                else  if(model->index(row,col).data(EditTypeRole).toInt() == LineEdit)
                 {
                     QLineEdit *lineEdit = new QLineEdit(Widget);
                     dataWidgetMapper->addMapping(lineEdit,row,col);
-                    lineEdit->setFocusPolicy(Qt::NoFocus);
+                    //lineEdit->setFocusPolicy(Qt::NoFocus);
                     lineEdit->setGeometry(NameLabel?X_SpacePos+NameLabel->width():X_SpacePos, Y_SpacePos,LINEEDIT_WIDTH,lineEdit->height());
                     lineEdit->show();
                 }
@@ -393,11 +401,11 @@ void SettingPanel::slotCurrentChanged(int index)
 //        contentsWidget->addItem(tr("mainpanel"));
 //        contentsWidget->addItem(tr("status"));
 //        contentsWidget->addItem(tr("session"));
-        QMap<QString, QStandardItemModel *>::const_iterator i = m_Models->constBegin();
-        while (i != m_Models->constEnd()) {
-            contentsWidget->addItem(i.key());
-            i++;
-        }
+//        QMap<QString, QStandardItemModel *>::const_iterator i = m_Models->constBegin();
+//        while (i != m_Models->constEnd()) {
+//            contentsWidget->addItem(i.key());
+//            i++;
+//        }
         initTabOneWidget();
     }
     else if (index == 1){
@@ -420,22 +428,7 @@ void SettingPanel::slotItemClicked(QListWidgetItem *item)
     QString itemText = item->text();
     QPoint widgetPos;
     if (tabWidget->currentIndex() == 0) {
-        if (itemText == tr("mainpanel")) {
-            widgetPos = panelWidget->pos();
-            scrollArea->verticalScrollBar()->setSliderPosition(widgetPos.y());
-        }
-        else if (itemText == tr("status")) {
-            widgetPos = statusWidget->pos();
-            scrollArea->verticalScrollBar()->setValue(widgetPos.y());
-        }
-        else if (itemText == tr("session")) {
-            widgetPos = sessionWidget->pos();
-            scrollArea->verticalScrollBar()->setValue(widgetPos.y());
-        }
-        else if (itemText == tr("login")) {
-            widgetPos = loginWidget->pos();
-            scrollArea->verticalScrollBar()->setValue(widgetPos.y());
-        }
+        scrollArea->verticalScrollBar()->setSliderPosition(item->data(Qt::UserRole).toInt());
     }
     else if (tabWidget->currentIndex() == 1) {
         if (itemText == tr("password")) {
@@ -452,40 +445,10 @@ void SettingPanel::slotItemClicked(QListWidgetItem *item)
 void SettingPanel::slotValueChanged(int value)
 {
     if (tabWidget->currentIndex() == 0) {
-        QListWidgetItem *loginItem = contentsWidget->item(0);
-        QListWidgetItem *panelItem = contentsWidget->item(1);
-        QListWidgetItem *statusItem = contentsWidget->item(2);
-        QListWidgetItem *sessionItem = contentsWidget->item(3);
-        if (!signFlag) {
-            if (loginWidget && panelWidget && statusWidget && sessionWidget) {
-                if (!loginWidget->visibleRegion().isEmpty()) {   // 可见范围不为空
-                    loginItem->setSelected(true);
-                    return;
-                }
-                else {
-                    loginItem->setSelected(false);
-                }
-                if (!panelWidget->visibleRegion().isEmpty()) {
-                    panelItem->setSelected(true);
-                    return;
-                }
-                else {
-                    panelItem->setSelected(false);
-                }
-                if (!statusWidget->visibleRegion().isEmpty()) {
-                    statusItem->setSelected(true);
-                    return;
-                }
-                else {
-                    statusItem->setSelected(false);
-                }
-                if (!sessionWidget->visibleRegion().isEmpty()) {
-                    sessionItem->setSelected(true);
-                    return;
-                }
-                else {
-                    sessionItem->setSelected(false);
-                }
+        for (int itemPos = 0; itemPos < contentsWidget->count(); ++itemPos) {
+            if(value >= contentsWidget->item(itemPos)->data(Qt::UserRole).toInt())
+            {
+                contentsWidget->item(itemPos)->setSelected(true);
             }
         }
     }

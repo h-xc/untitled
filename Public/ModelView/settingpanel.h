@@ -37,7 +37,10 @@ class SettingPanel : public QWidget
 public:
     SettingPanel(QWidget *parent = 0);
     ~SettingPanel();
+
     QMap<QString,QStandardItemModel*> *m_Models;
+    QList<QString> *m_ModelsSort;
+
 protected:
      void paintEvent(QPaintEvent *event);
      void mousePressEvent(QMouseEvent *event);
