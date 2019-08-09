@@ -70,7 +70,7 @@ private:
     QDataWidgetMapperPrivate  *d;
 
 private Q_SLOTS:
-    void _q_dataChanged(const QModelIndex &, const QModelIndex &, const QVector<int> &);
+    void _q_dataChanged(const QModelIndex &, const QModelIndex &);
     void _q_commitData(QWidget *);
     void _q_closeEditor(QWidget *, QAbstractItemDelegate::EndEditHint);
     void _q_modelDestroyed();

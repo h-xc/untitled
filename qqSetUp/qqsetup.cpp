@@ -4,7 +4,8 @@
 #include <QDomDocument>
 #include <QFile>
 #include <QDebug>
-
+#include <QMap>
+#include <QToolTip>
 #include "..\\Public\\ModelView\\item_delegate.h"
 
 #define  XML_FILE_NAME     ".\\FaultFixVal.xml"
@@ -13,8 +14,9 @@ qqSetUp::qqSetUp(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::qqSetUp)
 {
-    ui->setupUi(this);
     fetchOfStore();
+    ui->setupUi(this);
+    //ui->widget->m_Models = &m_Models;
 
     ui->KISetModelView->setModel(m_Models.value("KISetModel"));
     ui->KISetModelView->setItemDelegate(new ItemDelegate(this));
@@ -22,9 +24,10 @@ qqSetUp::qqSetUp(QWidget *parent) :
     ui->KOSetModelView->setItemDelegate(new ItemDelegate(this));
     ui->faultSetModelView->setModel(m_Models.value("faultSetModel"));
     ui->faultSetModelView->setItemDelegate(new ItemDelegate(this));
-
     ui->lineSetModelView->setModel(m_Models.value("lineSetModel"));
     ui->lineSetModelView->setItemDelegate(new ItemDelegate(this));
+
+
 
 }
 bool qqSetUp::fetchOfStore()
@@ -70,34 +73,55 @@ bool qqSetUp::fetchOfStore()
             WidgetModel->setColumnCount(Data.attribute("ItemCol").toInt()+1);
         }
         //qDebug() << Data.attribute("ItemRow") + "," + Data.attribute("ItemCol");
-
         item = new QStandardItem(Data.attribute("ItemRow") + "," + Data.attribute("ItemCol"));
         WidgetModel->setItem(Data.attribute("ItemRow").toInt(),Data.attribute("ItemCol").toInt(),item);
 
 
         item->setData(Data.attribute("DataName"),VarNameRole);
-        QDomElement Interface = Data.firstChildElement(); //获得第一个子节点
 
-        item->setData(Interface.attribute("Name"),NameRole);
-        item->setData(Interface.attribute("Desc"),DescRole);
-        item->setData(Interface.attribute("ShowType"),ShowTypeRole);
-        item->setData(Interface.attribute("CheckType"),CheckTypeRole);
-        item->setData(Interface.attribute("EditType"),EditTypeRole);
-        item->setData(Interface.attribute("Regexp"),RegexpRole);
+        QDomElement Interface = Data.firstChildElement(); //获得第一个子节点
+        if(!Interface.attribute("Name").isEmpty())     item->setData(Interface.attribute("Name"),NameRole);
+        if(!Interface.attribute("Desc").isEmpty())
+        {
+            item->setData(Interface.attribute("Desc"),DescRole);
+            //item->setData(Interface.attribute("Desc"),Qt::ToolTipRole);
+        }
+        if(!Interface.attribute("ShowType").isEmpty()) item->setData(Interface.attribute("ShowType"),ShowTypeRole);
+        if(!Interface.attribute("CheckType").isEmpty())item->setData(Interface.attribute("CheckType"),CheckTypeRole);
+        if(!Interface.attribute("EditType").isEmpty()) item->setData(Interface.attribute("EditType"),EditTypeRole);
+        if(!Interface.attribute("Regexp").isEmpty())   item->setData(Interface.attribute("Regexp"),RegexpRole);
         if(Interface.attribute("Editable") == "false")
         {
             item->flags() &= ~Qt::ItemIsEditable;
         }
 
         QDomElement Val =  Interface.nextSiblingElement();
-        item->setData(Val.attribute("Unint"),UnitRole);
-        item->setData(Val.attribute("DataType"),DataTypeRole);
-        item->setData(Val.attribute("RangMin"),RangMinRole);
-        item->setData(Val.attribute("RangMax"),RangMaxRole);
-        item->setData(Val.attribute("Step"),StepRole);
-        item->setData(Val.attribute("Decimal"),DecimalRole);
-        qDebug() << Val.text();
-        item->setData(Val.text(),Qt::EditRole);
+        if(!Val.attribute("Unint").isEmpty())    item->setData(Val.attribute("Unint"),UnitRole);
+        if(!Val.attribute("DataType").isEmpty()) item->setData(Val.attribute("DataType"),DataTypeRole);
+        if(!Val.attribute("RangMin").isEmpty())  item->setData(Val.attribute("RangMin"),RangMinRole);
+        if(!Val.attribute("RangMax").isEmpty())  item->setData(Val.attribute("RangMax"),RangMaxRole);
+        if(!Val.attribute("Step").isEmpty())     item->setData(Val.attribute("Step"),StepRole);
+        if(!Val.attribute("Decimal").isEmpty())  item->setData(Val.attribute("Decimal"),DecimalRole);
+
+        if(!Val.text().isEmpty())
+        {
+            if(item->data(DataTypeRole).toString() ==  "float")
+            {
+                item->setData(QString().setNum(Val.text().toFloat(),'f',item->data(DecimalRole).toInt()),Qt::EditRole);
+            }else
+            {
+                item->setData(Val.text(),Qt::EditRole);
+            }
+        }
+
+        QDomElement xmlCombo =  Val.nextSiblingElement();
+        QMap<QString,QVariant> mapCombo;
+        while(!xmlCombo.isNull())
+        {
+            mapCombo.insert(xmlCombo.attribute("InterfaceName"),xmlCombo.text());
+            xmlCombo = xmlCombo.nextSiblingElement();
+        }
+        if(!mapCombo.isEmpty())  item->setData(mapCombo,ComboMapRole);
     }
     return true;
 }

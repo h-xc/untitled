@@ -6,7 +6,8 @@
 #include <QListWidgetItem>
 #include <QScrollArea>
 #include <QPushButton>
-#include ".\Public\ModelView\mydatawidgetmapper.h"
+#include <QStandardItemModel>
+#include "mydatawidgetmapper.h"
 
 #define TITLE_HEIGHT    35
 
@@ -18,6 +19,16 @@
 #define SCROLL_TOP      CONTENTS_TOP + 1
 #define SCROLL_LEFT     CONTENTS_WIDTE + 1
 
+#define Y_START_POS     10
+#define Y_SPACE         40
+
+#define X_START_POS     30
+#define X_SPACE         200
+
+#define Y_WIDGET_START_POS 0
+
+#define LINEEDIT_WIDTH  70
+
 
 
 class SettingPanel : public QWidget
@@ -26,7 +37,7 @@ class SettingPanel : public QWidget
 public:
     SettingPanel(QWidget *parent = 0);
     ~SettingPanel();
-
+    QMap<QString,QStandardItemModel*> *m_Models;
 protected:
      void paintEvent(QPaintEvent *event);
      void mousePressEvent(QMouseEvent *event);
@@ -66,6 +77,8 @@ private:
 
     QWidget *spaceWidget;
     bool signFlag;   // 标记是使用目录窗口更新滚动窗口
+
+
 };
 
 #endif // SETTINGPANEL_H

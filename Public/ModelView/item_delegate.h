@@ -22,7 +22,7 @@ hxc      190102 v1.0       创建编写
 #include <QMap>
 
 
-#define ITEM_TYPE_STRING_MAXLEN      64     // 定义字符默认最大长度
+#define ITEM_TYPE_STRING_MAXLEN      10     // 定义字符默认最大长度
 // 网址IP4类型 正则
 #define ITEM_BASE_TYPE_IP4_REGEXP    "((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)"
 // MAC地址类型 正则
@@ -43,8 +43,8 @@ enum EditType
 enum ItemUserRole
 {
     /*通用属性储存角色*/
-    VarNameRole = Qt::UserRole,        // 值名称（中文）
-    NameRole,        // 值名称（中文）
+    VarNameRole = Qt::UserRole,        // 值变量名称
+    NameRole,                       // 值名称（中文）
     UnitRole,                       // 单位
     DescRole,                       // 值描述
     ShowTypeRole,                   // 显示类型，定义16进制，标准浮点，字符
@@ -132,6 +132,7 @@ public:
     /*虚函数paint，在表格视图中会使用到，绘制显示小部件*/
     void paint(QPainter *painter,const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
+
     /*静态函数initCheck，用于初始化表格编辑器和小控件的输入合法性的初始化*/
     static bool initEditor(QWidget *editor,const QModelIndex &index);   //
 
@@ -140,8 +141,6 @@ private:
 
     /* 因为部分表格和小控件的处理方式（部分控件的内容获取和初始化）不同，需要标记是否是表格的委托  0：不是  1：是  默认 1*/
     bool m_isView;
-
-
 
     //signals:
 

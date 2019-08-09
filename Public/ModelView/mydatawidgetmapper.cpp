@@ -37,233 +37,233 @@
     **
     ****************************************************************************/
 
-    #include "mydatawidgetmapper.h"
-
-    //#include "qabstractitemmodel.h"
-    //#include "qitemdelegate.h"
-    //#include "qmetaobject.h"
-    #include <QWidget>
-    #include <QPointer>
-    //#include "private/qobject_p.h"
-    //#include "private/qabstractitemmodel_p.h"
+#include "mydatawidgetmapper.h"
+#include "item_delegate.h"
+//#include "qabstractitemmodel.h"
+//#include "qitemdelegate.h"
+//#include "qmetaobject.h"
+#include <QWidget>
+#include <QPointer>
+//#include "private/qobject_p.h"
+//#include "private/qabstractitemmodel_p.h"
 #include <QItemDelegate>
-    #include <iterator>
+#include <iterator>
 
-    QT_BEGIN_NAMESPACE
+QT_BEGIN_NAMESPACE
 
-    class QDataWidgetMapperPrivate
+class QDataWidgetMapperPrivate
+{
+public:
+    // Q_DECLARE_PUBLIC(QDataWidgetMapper)
+
+    QDataWidgetMapperPrivate()
+        : model(0), delegate(0),
+          orientation(Qt::Horizontal),
+          submitPolicy(AutoSubmit)
     {
-    public:
-       // Q_DECLARE_PUBLIC(QDataWidgetMapper)
 
-        QDataWidgetMapperPrivate()
-            : model(0), delegate(0),
-              orientation(Qt::Horizontal),
-              submitPolicy(AutoSubmit)
-        {
+    }
 
-        }
+    QAbstractItemModel *model;
+    QAbstractItemDelegate *delegate;
+    Qt::Orientation orientation;
+    SubmitPolicy submitPolicy;
+    QPersistentModelIndex rootIndex;
+    QPersistentModelIndex currentTopLeft;
 
-        QAbstractItemModel *model;
-        QAbstractItemDelegate *delegate;
-        Qt::Orientation orientation;
-        SubmitPolicy submitPolicy;
-        QPersistentModelIndex rootIndex;
-        QPersistentModelIndex currentTopLeft;
-
-        inline int itemCount()
-        {
-            return orientation == Qt::Horizontal
+    inline int itemCount()
+    {
+        return orientation == Qt::Horizontal
                 ? model->rowCount(rootIndex)
                 : model->columnCount(rootIndex);
+    }
+
+    inline int currentIdx() const
+    {
+        return orientation == Qt::Horizontal ? currentTopLeft.row() : currentTopLeft.column();
+    }
+
+    inline QModelIndex indexAt(int idx,int itemPos)
+    {
+        //            return orientation == Qt::Horizontal
+        //                ? model->index(currentIdx(), itemPos, rootIndex)
+        //                : model->index(itemPos, currentIdx(), rootIndex);
+        return orientation == Qt::Horizontal
+                ? model->index(idx, itemPos, rootIndex)
+                : model->index(itemPos, idx, rootIndex);
+    }
+
+    void flipEventFilters(QAbstractItemDelegate *oldDelegate,
+                          QAbstractItemDelegate *newDelegate) const
+    {
+
+        int count = widgetMap.size();
+        for (int i = 0; i < count;i++)
+        {
+            QWidget *w = widgetMap[i].widget;
+            if (!w)
+                continue;
+            w->removeEventFilter(oldDelegate);
+            w->installEventFilter(newDelegate);
         }
 
-        inline int currentIdx() const
-        {
-            return orientation == Qt::Horizontal ? currentTopLeft.row() : currentTopLeft.column();
-        }
 
-        inline QModelIndex indexAt(int idx,int itemPos)
-        {
-//            return orientation == Qt::Horizontal
-//                ? model->index(currentIdx(), itemPos, rootIndex)
-//                : model->index(itemPos, currentIdx(), rootIndex);
-            return orientation == Qt::Horizontal
-                    ? model->index(idx, itemPos, rootIndex)
-                    : model->index(itemPos, idx, rootIndex);
-        }
+        //            for (const WidgetMapper &e : widgetMap) {
+        //                QWidget *w = e.widget;
+        //                if (!w)
+        //                    continue;
+        //                w->removeEventFilter(oldDelegate);
+        //                w->installEventFilter(newDelegate);
+        //            }
+    }
 
-        void flipEventFilters(QAbstractItemDelegate *oldDelegate,
-                              QAbstractItemDelegate *newDelegate) const
-        {
+    void populate();
 
-            int count = widgetMap.size();
-            for (int i = 0; i < count;i++)
-            {
-                QWidget *w = widgetMap[i].widget;
-                if (!w)
-                    continue;
-                w->removeEventFilter(oldDelegate);
-                w->installEventFilter(newDelegate);
-            }
+    // private slots
+    void _q_dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &);
+    void _q_commitData(QWidget *);
+    void _q_closeEditor(QWidget *, QAbstractItemDelegate::EndEditHint);
+    void _q_modelDestroyed();
 
-
-//            for (const WidgetMapper &e : widgetMap) {
-//                QWidget *w = e.widget;
-//                if (!w)
-//                    continue;
-//                w->removeEventFilter(oldDelegate);
-//                w->installEventFilter(newDelegate);
-//            }
-        }
-
-        void populate();
-
-        // private slots
-        void _q_dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &);
-        void _q_commitData(QWidget *);
-        void _q_closeEditor(QWidget *, QAbstractItemDelegate::EndEditHint);
-        void _q_modelDestroyed();
-
-        struct WidgetMapper
-        {
-            QPointer<QWidget> widget;
-            int section;
-            QPersistentModelIndex currentIndex;
-            QByteArray property;
-        };
-
-        void populate(WidgetMapper &m);
-        int findWidget(QWidget *w) const;
-
-        bool commit(const WidgetMapper &m);
-
-        std::vector<WidgetMapper> widgetMap;
+    struct WidgetMapper
+    {
+        QPointer<QWidget> widget;
+        int section;
+        QPersistentModelIndex currentIndex;
+        QByteArray property;
     };
-    Q_DECLARE_TYPEINFO(QDataWidgetMapperPrivate::WidgetMapper, Q_MOVABLE_TYPE);
 
-    int QDataWidgetMapperPrivate::findWidget(QWidget *w) const
+    void populate(WidgetMapper &m);
+    int findWidget(QWidget *w) const;
+
+    bool commit(const WidgetMapper &m);
+
+    std::vector<WidgetMapper> widgetMap;
+};
+Q_DECLARE_TYPEINFO(QDataWidgetMapperPrivate::WidgetMapper, Q_MOVABLE_TYPE);
+
+int QDataWidgetMapperPrivate::findWidget(QWidget *w) const
+{
+    int count = widgetMap.size();
+    for (int i = 0; i < count;i++)
     {
-        int count = widgetMap.size();
-        for (int i = 0; i < count;i++)
-        {
-            if (widgetMap[i].widget == w)
-                return int(&widgetMap[i] - &widgetMap.front());
-        }
-//        for (const WidgetMapper &e : widgetMap) {
-//            if (e.widget == w)
-//                return int(&e - &widgetMap.front());
-//        }
-        return -1;
+        if (widgetMap[i].widget == w)
+            return int(&widgetMap[i] - &widgetMap.front());
     }
+    //        for (const WidgetMapper &e : widgetMap) {
+    //            if (e.widget == w)
+    //                return int(&e - &widgetMap.front());
+    //        }
+    return -1;
+}
 
-    bool QDataWidgetMapperPrivate::commit(const WidgetMapper &m)
+bool QDataWidgetMapperPrivate::commit(const WidgetMapper &m)
+{
+    if (m.widget.isNull())
+        return true; // just ignore
+
+    if (!m.currentIndex.isValid())
+        return false;
+
+    // Create copy to avoid passing the widget mappers data
+    QModelIndex idx = m.currentIndex;
+    if (m.property.isEmpty())
+        delegate->setModelData(m.widget, model, idx);
+    else
+        model->setData(idx, m.widget->property(m.property), Qt::EditRole);
+
+    return true;
+}
+
+void QDataWidgetMapperPrivate::populate(WidgetMapper &m)
+{
+    if (m.widget.isNull())
+        return;
+
+    // m.currentIndex = indexAt(m.section);
+    if (m.property.isEmpty())
+        delegate->setEditorData(m.widget, m.currentIndex);
+    else
+        m.widget->setProperty(m.property, m.currentIndex.data(Qt::EditRole));
+}
+
+void QDataWidgetMapperPrivate::populate()
+{
+    int count = widgetMap.size();
+    for (int i = 0; i < count;i++)
     {
-        if (m.widget.isNull())
-            return true; // just ignore
-
-        if (!m.currentIndex.isValid())
-            return false;
-
-        // Create copy to avoid passing the widget mappers data
-        QModelIndex idx = m.currentIndex;
-        if (m.property.isEmpty())
-            delegate->setModelData(m.widget, model, idx);
-        else
-            model->setData(idx, m.widget->property(m.property), Qt::EditRole);
-
-        return true;
+        populate( widgetMap[i]);
     }
+    //        for (WidgetMapper &e : widgetMap)
+    //            populate(e);
+}
 
-    void QDataWidgetMapperPrivate::populate(WidgetMapper &m)
+static bool qContainsIndex(const QModelIndex &idx, const QModelIndex &topLeft,
+                           const QModelIndex &bottomRight)
+{
+    return idx.row() >= topLeft.row() && idx.row() <= bottomRight.row()
+            && idx.column() >= topLeft.column() && idx.column() <= bottomRight.column();
+}
+
+void QDataWidgetMapperPrivate::_q_dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &)
+{
+    if (topLeft.parent() != rootIndex)
+        return; // not in our hierarchy
+    int count = widgetMap.size();
+    for (int i = 0; i < count;i++)
     {
-        if (m.widget.isNull())
-            return;
-
-       // m.currentIndex = indexAt(m.section);
-        if (m.property.isEmpty())
-            delegate->setEditorData(m.widget, m.currentIndex);
-        else
-            m.widget->setProperty(m.property, m.currentIndex.data(Qt::EditRole));
+        if (qContainsIndex(widgetMap[i].currentIndex, topLeft, bottomRight))
+            populate(widgetMap[i]);
     }
+    //        for (WidgetMapper &e : widgetMap) {
+    //            if (qContainsIndex(e.currentIndex, topLeft, bottomRight))
+    //                populate(e);
+    //        }
+}
 
-    void QDataWidgetMapperPrivate::populate()
-    {
-        int count = widgetMap.size();
-        for (int i = 0; i < count;i++)
-        {
-            populate( widgetMap[i]);
-        }
-//        for (WidgetMapper &e : widgetMap)
-//            populate(e);
+void QDataWidgetMapperPrivate::_q_commitData(QWidget *w)
+{
+    if (submitPolicy == ManualSubmit)
+        return;
+
+    int idx = findWidget(w);
+    if (idx == -1)
+        return; // not our widget
+
+    commit(widgetMap[idx]);
+}
+
+void QDataWidgetMapperPrivate::_q_closeEditor(QWidget *w, QAbstractItemDelegate::EndEditHint hint)
+{
+    int idx = findWidget(w);
+    if (idx == -1)
+        return; // not our widget
+
+    switch (hint) {
+    case QAbstractItemDelegate::RevertModelCache: {
+        populate(widgetMap[idx]);
+        break; }
+    case QAbstractItemDelegate::EditNextItem:
+        // w->focusNextChild();
+        break;
+    case QAbstractItemDelegate::EditPreviousItem:
+        // w->focusPreviousChild();
+        break;
+    case QAbstractItemDelegate::SubmitModelCache:
+    case QAbstractItemDelegate::NoHint:
+        // nothing
+        break;
     }
+}
 
-    static bool qContainsIndex(const QModelIndex &idx, const QModelIndex &topLeft,
-                               const QModelIndex &bottomRight)
-    {
-        return idx.row() >= topLeft.row() && idx.row() <= bottomRight.row()
-               && idx.column() >= topLeft.column() && idx.column() <= bottomRight.column();
-    }
+void QDataWidgetMapperPrivate::_q_modelDestroyed()
+{
 
-    void QDataWidgetMapperPrivate::_q_dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &)
-    {
-        if (topLeft.parent() != rootIndex)
-            return; // not in our hierarchy
-        int count = widgetMap.size();
-        for (int i = 0; i < count;i++)
-        {
-            if (qContainsIndex(widgetMap[i].currentIndex, topLeft, bottomRight))
-                populate(widgetMap[i]);
-        }
-//        for (WidgetMapper &e : widgetMap) {
-//            if (qContainsIndex(e.currentIndex, topLeft, bottomRight))
-//                populate(e);
-//        }
-    }
+    model = 0;
+    // q->setModel(0);
+}
 
-    void QDataWidgetMapperPrivate::_q_commitData(QWidget *w)
-    {
-        if (submitPolicy == ManualSubmit)
-            return;
-
-        int idx = findWidget(w);
-        if (idx == -1)
-            return; // not our widget
-
-        commit(widgetMap[idx]);
-    }
-
-    void QDataWidgetMapperPrivate::_q_closeEditor(QWidget *w, QAbstractItemDelegate::EndEditHint hint)
-    {
-        int idx = findWidget(w);
-        if (idx == -1)
-            return; // not our widget
-
-        switch (hint) {
-        case QAbstractItemDelegate::RevertModelCache: {
-            populate(widgetMap[idx]);
-            break; }
-        case QAbstractItemDelegate::EditNextItem:
-           // w->focusNextChild();
-            break;
-        case QAbstractItemDelegate::EditPreviousItem:
-           // w->focusPreviousChild();
-            break;
-        case QAbstractItemDelegate::SubmitModelCache:
-        case QAbstractItemDelegate::NoHint:
-            // nothing
-            break;
-        }
-    }
-
-    void QDataWidgetMapperPrivate::_q_modelDestroyed()
-    {
-
-        model = 0;
-       // q->setModel(0);
-    }
-
-    /*!
+/*!
         \class QDataWidgetMapper
         \brief The QDataWidgetMapper class provides mapping between a section
         of a data model to widgets.
@@ -327,7 +327,7 @@
         \sa QAbstractItemModel, QAbstractItemDelegate
      */
 
-    /*! \enum QDataWidgetMapper::SubmitPolicy
+/*! \enum QDataWidgetMapper::SubmitPolicy
 
         This enum describes the possible submit policies a QDataWidgetMapper
         supports.
@@ -337,7 +337,7 @@
         \value ManualSubmit  The model is not updated until submit() is called.
      */
 
-    /*!
+/*!
         \fn void QDataWidgetMapper::currentIndexChanged(int index)
 
         This signal is emitted after the current index has changed and
@@ -347,73 +347,73 @@
         \sa currentIndex(), setCurrentIndex()
      */
 
-    /*!
+/*!
         Constructs a new QDataWidgetMapper with parent object \a parent.
         By default, the orientation is horizontal and the submit policy
         is \c{AutoSubmit}.
 
         \sa setOrientation(), setSubmitPolicy()
      */
-    mydataWidgetMapper::mydataWidgetMapper(QObject *parent)
-        : QObject(parent)
-    {
-        // ### Qt6: QStyledItemDelegate
-        d = new QDataWidgetMapperPrivate();    // 创建私有函数和变量
-        setItemDelegate(new QItemDelegate(this));
-    }
+mydataWidgetMapper::mydataWidgetMapper(QObject *parent)
+    : QObject(parent)
+{
+    // ### Qt6: QStyledItemDelegate
+    d = new QDataWidgetMapperPrivate();    // 创建私有函数和变量
+    setItemDelegate(new QItemDelegate(this));
+}
 
-    /*!
+/*!
         Destroys the object.
      */
-    mydataWidgetMapper::~mydataWidgetMapper()
-    {
-        delete d;
-    }
+mydataWidgetMapper::~mydataWidgetMapper()
+{
+    delete d;
+}
 
-    /*!
+/*!
          Sets the current model to \a model. If another model was set,
          all mappings to that old model are cleared.
 
          \sa model()
      */
-    void mydataWidgetMapper::setModel(QAbstractItemModel *model)
-    {
-       // Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::setModel(QAbstractItemModel *model)
+{
+    // Q_D(QDataWidgetMapper);
 
-        if (d->model == model)
-            return;
+    if (d->model == model)
+        return;
 
-        if (d->model) {
-            disconnect(d->model, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)), this,
-                       SLOT(_q_dataChanged(QModelIndex,QModelIndex,QVector<int>)));
-            disconnect(d->model, SIGNAL(destroyed()), this,
-                       SLOT(_q_modelDestroyed()));
-        }
-        clearMapping();
-        d->rootIndex = QModelIndex();
-        d->currentTopLeft = QModelIndex();
-
-        d->model = model;
-
-        connect(model, SIGNAL(dataChanged(QModelIndex,QModelIndex,QVector<int>)),
-                SLOT(_q_dataChanged(QModelIndex,QModelIndex,QVector<int>)));
-        connect(model, SIGNAL(destroyed()), SLOT(_q_modelDestroyed()));
+    if (d->model) {
+        disconnect(d->model, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this,
+                   SLOT(_q_dataChanged(QModelIndex,QModelIndex)));
+        disconnect(d->model, SIGNAL(destroyed()), this,
+                   SLOT(_q_modelDestroyed()));
     }
+    clearMapping();
+    d->rootIndex = QModelIndex();
+    d->currentTopLeft = QModelIndex();
 
-    /*!
+    d->model = model;
+
+    connect(model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+            SLOT(_q_dataChanged(QModelIndex,QModelIndex)));
+    connect(model, SIGNAL(destroyed()), SLOT(_q_modelDestroyed()));
+}
+
+/*!
         Returns the current model.
 
         \sa setModel()
      */
-    QAbstractItemModel *mydataWidgetMapper::model() const
-    {
-        //Q_D(const QDataWidgetMapper);
-        return d->model == 0
-                ? static_cast<QAbstractItemModel *>(0)
-                : d->model;
-    }
+QAbstractItemModel *mydataWidgetMapper::model() const
+{
+    //Q_D(const QDataWidgetMapper);
+    return d->model == 0
+            ? static_cast<QAbstractItemModel *>(0)
+            : d->model;
+}
 
-    /*!
+/*!
         Sets the item delegate to \a delegate. The delegate will be used to write
         data from the model into the widget and from the widget to the model,
         using QAbstractItemDelegate::setEditorData() and QAbstractItemDelegate::setModelData().
@@ -426,61 +426,61 @@
         view connected to a given delegate may receive the \l{QAbstractItemDelegate::}{closeEditor()}
         signal, and attempt to access, modify or close an editor that has already been closed.
      */
-    void mydataWidgetMapper::setItemDelegate(QAbstractItemDelegate *delegate)
-    {
-        //Q_D(QDataWidgetMapper);
-        QAbstractItemDelegate *oldDelegate = d->delegate;
-        if (oldDelegate) {
-            disconnect(oldDelegate, SIGNAL(commitData(QWidget*)), this, SLOT(_q_commitData(QWidget*)));
-            disconnect(oldDelegate, SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),
-                       this, SLOT(_q_closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)));
-        }
-
-        d->delegate = delegate;
-
-        if (delegate) {
-            connect(delegate, SIGNAL(commitData(QWidget*)), SLOT(_q_commitData(QWidget*)));
-            connect(delegate, SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),
-                    SLOT(_q_closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)));
-        }
-
-        d->flipEventFilters(oldDelegate, delegate);
+void mydataWidgetMapper::setItemDelegate(QAbstractItemDelegate *delegate)
+{
+    //Q_D(QDataWidgetMapper);
+    QAbstractItemDelegate *oldDelegate = d->delegate;
+    if (oldDelegate) {
+        disconnect(oldDelegate, SIGNAL(commitData(QWidget*)), this, SLOT(_q_commitData(QWidget*)));
+        disconnect(oldDelegate, SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),
+                   this, SLOT(_q_closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)));
     }
 
-    /*!
+    d->delegate = delegate;
+
+    if (delegate) {
+        connect(delegate, SIGNAL(commitData(QWidget*)), SLOT(_q_commitData(QWidget*)));
+        connect(delegate, SIGNAL(closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)),
+                SLOT(_q_closeEditor(QWidget*,QAbstractItemDelegate::EndEditHint)));
+    }
+
+    d->flipEventFilters(oldDelegate, delegate);
+}
+
+/*!
         Returns the current item delegate.
      */
-    QAbstractItemDelegate *mydataWidgetMapper::itemDelegate() const
-    {
-        //Q_D(const QDataWidgetMapper);
-        return d->delegate;
-    }
+QAbstractItemDelegate *mydataWidgetMapper::itemDelegate() const
+{
+    //Q_D(const QDataWidgetMapper);
+    return d->delegate;
+}
 
-    /*!
+/*!
         Sets the root item to \a index. This can be used to display
         a branch of a tree. Pass an invalid model index to display
         the top-most branch.
 
         \sa rootIndex()
      */
-    void mydataWidgetMapper::setRootIndex(const QModelIndex &index)
-    {
-       // Q_D(QDataWidgetMapper);
-        d->rootIndex = index;
-    }
+void mydataWidgetMapper::setRootIndex(const QModelIndex &index)
+{
+    // Q_D(QDataWidgetMapper);
+    d->rootIndex = index;
+}
 
-    /*!
+/*!
         Returns the current root index.
 
         \sa setRootIndex()
     */
-    QModelIndex mydataWidgetMapper::rootIndex() const
-    {
-        //Q_D(const QDataWidgetMapper);
-        return QModelIndex(d->rootIndex);
-    }
+QModelIndex mydataWidgetMapper::rootIndex() const
+{
+    //Q_D(const QDataWidgetMapper);
+    return QModelIndex(d->rootIndex);
+}
 
-    /*!
+/*!
         Adds a mapping between a \a widget and a \a section from the model.
         The \a section is a column in the model if the orientation is
         horizontal (the default), otherwise a row.
@@ -504,16 +504,16 @@
 
         \sa removeMapping(), mappedSection(), clearMapping()
      */
-    void mydataWidgetMapper::addMapping(QWidget *widget,int index, int section)
-    {
-        //Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::addMapping(QWidget *widget,int index, int section)
+{
+    //Q_D(QDataWidgetMapper);
+    removeMapping(widget);
+    d->widgetMap.push_back({widget, section, d->indexAt(index,section), QByteArray()});
+    ItemDelegate::initEditor(widget,d->indexAt(index,section));
+    widget->installEventFilter(d->delegate);
+}
 
-        removeMapping(widget);
-        d->widgetMap.push_back({widget, section, d->indexAt(index,section), QByteArray()});
-        widget->installEventFilter(d->delegate);
-    }
-
-    /*!
+/*!
       \since 4.3
 
       Essentially the same as addMapping(), but adds the possibility to specify
@@ -522,50 +522,50 @@
       \sa addMapping()
     */
 
-    void mydataWidgetMapper::addMapping(QWidget *widget,int index, int section, const QByteArray &propertyName)
-    {
-        //Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::addMapping(QWidget *widget,int index, int section, const QByteArray &propertyName)
+{
+    //Q_D(QDataWidgetMapper);
 
-        removeMapping(widget);
-        d->widgetMap.push_back({widget, section, d->indexAt(index,section), propertyName});
-        widget->installEventFilter(d->delegate);
-    }
+    removeMapping(widget);
+    d->widgetMap.push_back({widget, section, d->indexAt(index,section), propertyName});
+    widget->installEventFilter(d->delegate);
+}
 
-    /*!
+/*!
         Removes the mapping for the given \a widget.
 
         \sa addMapping(), clearMapping()
      */
-    void mydataWidgetMapper::removeMapping(QWidget *widget)
-    {
-       // Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::removeMapping(QWidget *widget)
+{
+    // Q_D(QDataWidgetMapper);
 
-        int idx = d->findWidget(widget);
-        if (idx == -1)
-            return;
+    int idx = d->findWidget(widget);
+    if (idx == -1)
+        return;
 
-        d->widgetMap.erase(d->widgetMap.begin() + idx);
-        widget->removeEventFilter(d->delegate);
-    }
+    d->widgetMap.erase(d->widgetMap.begin() + idx);
+    widget->removeEventFilter(d->delegate);
+}
 
-    /*!
+/*!
         Returns the section the \a widget is mapped to or -1
         if the widget is not mapped.
 
         \sa addMapping(), removeMapping()
      */
-    int mydataWidgetMapper::mappedSection(QWidget *widget) const
-    {
-       // Q_D(const QDataWidgetMapper);
+int mydataWidgetMapper::mappedSection(QWidget *widget) const
+{
+    // Q_D(const QDataWidgetMapper);
 
-        int idx = d->findWidget(widget);
-        if (idx == -1)
-            return -1;
+    int idx = d->findWidget(widget);
+    if (idx == -1)
+        return -1;
 
-        return d->widgetMap[idx].section;
-    }
+    return d->widgetMap[idx].section;
+}
 
-    /*!
+/*!
       \since 4.3
       Returns the name of the property that is used when mapping
       data to the given \a widget.
@@ -573,73 +573,73 @@
       \sa mappedSection(), addMapping(), removeMapping()
     */
 
-    QByteArray mydataWidgetMapper::mappedPropertyName(QWidget *widget) const
-    {
-      //  Q_D(const QDataWidgetMapper);
+QByteArray mydataWidgetMapper::mappedPropertyName(QWidget *widget) const
+{
+    //  Q_D(const QDataWidgetMapper);
 
-//        int idx = d->findWidget(widget);
-//        if (idx == -1)
-//            return QByteArray();
-//        const auto &m = d->widgetMap[idx];
-//        if (m.property.isEmpty())
-//            return m.widget->metaObject()->userProperty().name();
-//        else
-//            return m.property;
-    }
+    //        int idx = d->findWidget(widget);
+    //        if (idx == -1)
+    //            return QByteArray();
+    //        const auto &m = d->widgetMap[idx];
+    //        if (m.property.isEmpty())
+    //            return m.widget->metaObject()->userProperty().name();
+    //        else
+    //            return m.property;
+}
 
-    /*!
+/*!
         Returns the widget that is mapped at \a section, or
         0 if no widget is mapped at that section.
 
         \sa addMapping(), removeMapping()
      */
-    QWidget *mydataWidgetMapper::mappedWidgetAt(int section) const
+QWidget *mydataWidgetMapper::mappedWidgetAt(int section) const
+{
+    //  Q_D(const QDataWidgetMapper);
+    int count = d->widgetMap.size();
+    for (int i = 0; i < count;i++)
     {
-      //  Q_D(const QDataWidgetMapper);
-        int count = d->widgetMap.size();
-        for (int i = 0; i < count;i++)
-        {
 
-            if ( d->widgetMap[i].section == section)
-                return  d->widgetMap[i].widget;
-        }
-//        for (auto &e : d->widgetMap) {
-//            if (e.section == section)
-//                return e.widget;
-//        }
-        return 0;
+        if ( d->widgetMap[i].section == section)
+            return  d->widgetMap[i].widget;
     }
+    //        for (auto &e : d->widgetMap) {
+    //            if (e.section == section)
+    //                return e.widget;
+    //        }
+    return 0;
+}
 
-    void mydataWidgetMapper::_q_dataChanged(const QModelIndex &Index1, const QModelIndex &Index2, const QVector<int> &Vector)
-    {
-        d->_q_dataChanged(Index1,Index2,Vector);
-    }
-    void mydataWidgetMapper::_q_commitData(QWidget *Widget)
-    {
-        d->_q_commitData(Widget);
-    }
-    void mydataWidgetMapper::_q_closeEditor(QWidget *Widget, QAbstractItemDelegate::EndEditHint end)
-    {
-        d->_q_closeEditor(Widget,end);
-    }
-    void mydataWidgetMapper::_q_modelDestroyed()
-    {
-        d->_q_modelDestroyed();
-    }
-    /*!
+void mydataWidgetMapper::_q_dataChanged(const QModelIndex &Index1, const QModelIndex &Index2)
+{
+    d->_q_dataChanged(Index1,Index2,QVector<int>());
+}
+void mydataWidgetMapper::_q_commitData(QWidget *Widget)
+{
+    d->_q_commitData(Widget);
+}
+void mydataWidgetMapper::_q_closeEditor(QWidget *Widget, QAbstractItemDelegate::EndEditHint end)
+{
+    d->_q_closeEditor(Widget,end);
+}
+void mydataWidgetMapper::_q_modelDestroyed()
+{
+    d->_q_modelDestroyed();
+}
+/*!
         Repopulates all widgets with the current data of the model.
         All unsubmitted changes will be lost.
 
         \sa submit(), setSubmitPolicy()
      */
-    void mydataWidgetMapper::revert()
-    {
-       // Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::revert()
+{
+    // Q_D(QDataWidgetMapper);
 
-        d->populate();
-    }
+    d->populate();
+}
 
-    /*!
+/*!
         Submits all changes from the mapped widgets to the model.
 
         For every mapped section, the item delegate reads the current
@@ -653,23 +653,23 @@
 
         \sa revert(), setSubmitPolicy()
      */
-    bool mydataWidgetMapper::submit()
+bool mydataWidgetMapper::submit()
+{
+    // Q_D(QDataWidgetMapper);
+    int count = d->widgetMap.size();
+    for (int i = 0; i < count;i++)
     {
-       // Q_D(QDataWidgetMapper);
-        int count = d->widgetMap.size();
-        for (int i = 0; i < count;i++)
-        {
-            if (!d->commit( d->widgetMap[i]))
-                return false;
-        }
-//        for (auto &e : d->widgetMap) {
-//            if (!d->commit(e))
-//                return false;
-//        }
-        return d->model->submit();
+        if (!d->commit( d->widgetMap[i]))
+            return false;
     }
+    //        for (auto &e : d->widgetMap) {
+    //            if (!d->commit(e))
+    //                return false;
+    //        }
+    return d->model->submit();
+}
 
-    /*!
+/*!
         Populates the widgets with data from the first row of the model
         if the orientation is horizontal (the default), otherwise
         with data from the first column.
@@ -683,7 +683,7 @@
 //        setCurrentIndex(0);
 //    }
 
-    /*!
+/*!
         Populates the widgets with data from the last row of the model
         if the orientation is horizontal (the default), otherwise
         with data from the last column.
@@ -699,7 +699,7 @@
 //    }
 
 
-    /*!
+/*!
         Populates the widgets with data from the next row of the model
         if the orientation is horizontal (the default), otherwise
         with data from the next column.
@@ -715,7 +715,7 @@
 //        setCurrentIndex(d->currentIdx() + 1);
 //    }
 
-    /*!
+/*!
         Populates the widgets with data from the previous row of the model
         if the orientation is horizontal (the default), otherwise
         with data from the previous column.
@@ -731,7 +731,7 @@
 //        setCurrentIndex(d->currentIdx() - 1);
 //    }
 
-    /*!
+/*!
         \property QDataWidgetMapper::currentIndex
         \brief the current row or column
 
@@ -761,7 +761,7 @@
 //        return d->currentIdx();
 //    }
 
-    /*!
+/*!
         Sets the current index to the row of the \a index if the
         orientation is horizontal (the default), otherwise to the
         column of the \a index.
@@ -792,24 +792,24 @@
 //        setCurrentIndex(d->orientation == Qt::Horizontal ? index.row() : index.column());
 //    }
 
-    /*!
+/*!
         Clears all mappings.
 
         \sa addMapping(), removeMapping()
      */
-    void mydataWidgetMapper::clearMapping()
-    {
-     //   Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::clearMapping()
+{
+    //   Q_D(QDataWidgetMapper);
 
-//        decltype(d->widgetMap) copy;
-//        d->widgetMap.swap(copy); // a C++98 move
-//        for (auto it = copy.crbegin(), end = copy.crend(); it != end; ++it) {
-//            if (it->widget)
-//                it->widget->removeEventFilter(d->delegate);
-//        }
-    }
+    //        decltype(d->widgetMap) copy;
+    //        d->widgetMap.swap(copy); // a C++98 move
+    //        for (auto it = copy.crbegin(), end = copy.crend(); it != end; ++it) {
+    //            if (it->widget)
+    //                it->widget->removeEventFilter(d->delegate);
+    //        }
+}
 
-    /*!
+/*!
         \property QDataWidgetMapper::orientation
         \brief the orientation of the model
 
@@ -843,45 +843,45 @@
 
         Changing the orientation clears all existing mappings.
     */
-    void mydataWidgetMapper::setOrientation(Qt::Orientation orientation)
-    {
-     //   Q_D(QDataWidgetMapper);
+void mydataWidgetMapper::setOrientation(Qt::Orientation orientation)
+{
+    //   Q_D(QDataWidgetMapper);
 
-        if (d->orientation == orientation)
-            return;
+    if (d->orientation == orientation)
+        return;
 
-        clearMapping();
-        d->orientation = orientation;
-    }
+    clearMapping();
+    d->orientation = orientation;
+}
 
-    Qt::Orientation mydataWidgetMapper::orientation() const
-    {
-      //  Q_D(const QDataWidgetMapper);
-        return d->orientation;
-    }
+Qt::Orientation mydataWidgetMapper::orientation() const
+{
+    //  Q_D(const QDataWidgetMapper);
+    return d->orientation;
+}
 
-    /*!
+/*!
         \property QDataWidgetMapper::submitPolicy
         \brief the current submit policy
 
         Changing the current submit policy will revert all widgets
         to the current data from the model.
     */
-    void mydataWidgetMapper::setSubmitPolicy(SubmitPolicy policy)
-    {
-      //  Q_D(QDataWidgetMapper);
-        if (policy == d->submitPolicy)
-            return;
+void mydataWidgetMapper::setSubmitPolicy(SubmitPolicy policy)
+{
+    //  Q_D(QDataWidgetMapper);
+    if (policy == d->submitPolicy)
+        return;
 
-        revert();
-        d->submitPolicy = policy;
-    }
+    revert();
+    d->submitPolicy = policy;
+}
 
-    SubmitPolicy mydataWidgetMapper::submitPolicy() const
-    {
-      //  Q_D(const QDataWidgetMapper);
-        return d->submitPolicy;
-    }
+SubmitPolicy mydataWidgetMapper::submitPolicy() const
+{
+    //  Q_D(const QDataWidgetMapper);
+    return d->submitPolicy;
+}
 
-    QT_END_NAMESPACE
+QT_END_NAMESPACE
 

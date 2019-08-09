@@ -20,11 +20,10 @@ QValidator::State MyDoubleValidator::validate(QString &str, int &i) const
     }
 
     int dotPos = str.indexOf(".");
-
-    if (dotPos > 0)  // 小小数点不在第1位
+    if (dotPos > 0)  // 输入了小数点不，且不在第1位
     {
         int decimalsLen = str.mid(dotPos+1).length();
-        if (decimalsLen > decimals() || 0 == decimals())  // 小时点数超过设定值,或没有小数点
+        if (decimalsLen > decimals() || 0 == decimals())  // 小时点数超过设定值,或设定没有小数点
         {
             return QValidator::Invalid;
         }
@@ -33,7 +32,13 @@ QValidator::State MyDoubleValidator::validate(QString &str, int &i) const
         {
             return QValidator::Intermediate;  // 为过渡值
         }
+    }else if(i > 1){   // 防止输入多个零
+        if(str.indexOf("0") == 0)
+        {
+            return QValidator::Invalid;
+        }
     }
+
 
     if(val <= top() && val >= bottom())  // 在设定范围内
     {

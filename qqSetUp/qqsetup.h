@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QMap>
 #include <QStandardItemModel>
+#include <QModelIndex>
+#include ".\Public\ModelView\settingpanel.h"
 namespace Ui {
 class qqSetUp;
 }
@@ -15,11 +17,12 @@ class qqSetUp : public QWidget
 public:
     explicit qqSetUp(QWidget *parent = 0);
     ~qqSetUp();
-
+    QMap<QString,QStandardItemModel*> m_Models;
 private:
     Ui::qqSetUp *ui;
     bool fetchOfStore();
-    QMap<QString,QStandardItemModel*> m_Models;
+public slots:
+
 };
 
 #endif // QQSETUP_H

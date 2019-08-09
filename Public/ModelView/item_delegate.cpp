@@ -8,7 +8,11 @@
 #include <QValidator>
 #include <QRegExp>
 #include <QApplication>
+#include <QMap>
+#include <QToolTip>
+
 #include "mydoublevalidator.h"
+#include "mylineedit.h"
 
 ItemDelegate::ItemDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
@@ -34,7 +38,7 @@ QWidget * ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem
     else if(thisEdit == LineEdit || thisEdit ==  DefaultEdit)  // 文本输入框
     {
         // 使用表格视图双击默认返回的lineedit   dynamic_cast<T*>(a) 将a值转换为类型为T的对象指针。如果类型T不是a的某个基类型，该操作将返回一个空指针。
-        QLineEdit *LineEdit = new QLineEdit(parent);
+        QLineEdit *LineEdit = new MyLineEdit(parent);
         //dynamic_cast<QLineEdit*>(QStyledItemDelegate::createEditor(parent,option,index));
         if(LineEdit != 0)
         {
@@ -69,7 +73,7 @@ void ItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) cons
             /* 显示格式在此定义  */
             return;
         }
-        QStyledItemDelegate::setEditorData(editor,index);
+        QStyledItemDelegate::setEditorData(editor,index);  
         return;
     }
     else  // 非表格显示
@@ -106,10 +110,29 @@ void ItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, cons
         if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())
         {
             QComboBox *comboBox = static_cast<QComboBox*>(editor);
-
             model->setData(index, comboBox->itemData(comboBox->currentIndex()), Qt::EditRole);
             //model->setData(index, comboBox->currentText(), TempRole);
             return;
+        }
+        if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className())
+        {
+            QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+            if(!lineEdit->hasAcceptableInput()) // 如果输入的数值不合法，则直接丢弃，并恢复原来的定值
+            {
+                lineEdit->setText(index.data(Qt::EditRole).toString());
+                // 弹出气泡提示
+                return;
+            }
+            else  // 输入合法，格式化字符，如浮点型，保留小数点
+            {
+                if(lineEdit->validator() ==NULL) return;
+                if(lineEdit->validator()->metaObject()->className() == QDoubleValidator::staticMetaObject.className())
+                {
+                    QDoubleValidator *doubleValidator = (QDoubleValidator*)(lineEdit->validator());
+                    //qDebug() << doubleValidator->decimals();
+                    lineEdit->setText(QString().setNum(lineEdit->text().toFloat(),'f',doubleValidator->decimals()));      // 恢复原值
+                }
+            }
         }
     }
     else
@@ -147,19 +170,25 @@ void ItemDelegate::paint(QPainter *painter,const QStyleOptionViewItem &option, c
         {
             return;
         }
+        QStyleOptionViewItem myOption = option;
+        initStyleOption(&myOption,index);
+        QApplication::style()->drawItemText ( painter, myOption.rect , myOption.displayAlignment, QApplication::palette(), true,strTem );
+
         /*此段摘自QT源码*/
-        QStyleOptionViewItem MyOption = option;
-        initStyleOption(&MyOption,index);
-        // MyOption. = strTem;
-         const QWidget *widget = option.widget;
-        // QStyle *style = widget ? widget->style() : QApplication::style();
-         QApplication::style()->drawControl(QStyle::CE_ItemViewItem, &MyOption, painter);
+ //        QStyleOptionViewItem MyOption = option;
+
+//        initStyleOption(&MyOption,index);
+//        // MyOption. = strTem;
+//         //const QWidget *widget = option.widget;
+//         QStyle *style = widget ? widget->style() : QApplication::style();
+//        style()->drawControl(QStyle::CE_ItemViewItem, &MyOption, painter);
     }
     else
     {
         QStyledItemDelegate::paint(painter,option,index);
     }
 }
+
 
 bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
 {
@@ -218,7 +247,7 @@ bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
             }
             else
             {
-                DoubleValidator->setDecimals(2);    // 默认两个小数点
+                DoubleValidator->setDecimals(0);    // 默认两个小数点
             }
             LineEdit->setValidator(DoubleValidator);    //
         }
@@ -226,6 +255,7 @@ bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
         {
             int lenMin = 0;
             int lenMax = ITEM_TYPE_STRING_MAXLEN;  // 默认上限
+            QString str = index.data(VarNameRole).toString();
             // 字符个数下限
             if(index.data(RangMinRole).isValid())
             {
@@ -236,7 +266,7 @@ bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
             {
                 lenMax = index.data(RangMaxRole).toInt();
             }
-            QString regStr = QString("^.{%1,%2}$").arg(lenMin).arg(lenMin);
+            QString regStr = QString("^.{%1,%2}$").arg(lenMin).arg(lenMax);
             QRegExp reg(regStr);
             QValidator *validator=new QRegExpValidator(reg,LineEdit);
             LineEdit->setValidator(validator);
