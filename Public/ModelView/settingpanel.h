@@ -9,15 +9,16 @@
 #include <QStandardItemModel>
 #include "mydatawidgetmapper.h"
 
-#define TITLE_HEIGHT    35
+#define CSS_FILE  ""
 
-#define TAB_WIDGET_TOP  TITLE_HEIGHT
+#define TAB_WIDGET_TOP  0
 
 #define CONTENTS_TOP    (TAB_WIDGET_TOP + 36)
-#define CONTENTS_WIDTE  130
+#define CONTENTS_WIDTH  130
 
 #define SCROLL_TOP      CONTENTS_TOP + 1
-#define SCROLL_LEFT     CONTENTS_WIDTE + 1
+#define SCROLL_LEFT     CONTENTS_WIDTH + 1
+#define SCROLL_WIDGET_WIDTH    500
 
 #define Y_START_POS     10
 #define Y_SPACE         40
@@ -25,11 +26,15 @@
 #define X_START_POS     30
 #define X_SPACE         200
 
-#define Y_WIDGET_START_POS 0
+#define EDIT_WIDTH  70
 
-#define LINEEDIT_WIDTH  70
-
-
+struct ModelStruct{
+    QString Name;
+    QString View;
+    QString Type;
+    QString Content;  // 标签记录
+    QAbstractItemModel* model;
+};
 
 class SettingPanel : public QWidget
 {
@@ -37,51 +42,29 @@ class SettingPanel : public QWidget
 public:
     SettingPanel(QWidget *parent = 0);
     ~SettingPanel();
-
-    QMap<QString,QStandardItemModel*> *m_Models;
-    QList<QString> *m_ModelsSort;
+    void setModles(QList<ModelStruct *> *Models);
+    void clear();
 
 protected:
-     void paintEvent(QPaintEvent *event);
-     void mousePressEvent(QMouseEvent *event);
-     void mouseReleaseEvent(QMouseEvent *event);
-     void mouseMoveEvent(QMouseEvent *event);
-     void resizeEvent(QResizeEvent *event);
+    void  resizeEvent(QResizeEvent *event);
+    void  addContent(int ax, int ay,QString label);
+    const  QList<ModelStruct *>   *m_Models;
+    int    Y_endPos;
 
 private:
-     void initTabOneWidget();
-     void initTabTwoWidget();
-     void initTabThreeWidget();
+    void initTabWidget();
+
 
 private slots:
-     void slotCurrentChanged(int index);
-     void slotItemClicked(QListWidgetItem *item);
-     void slotValueChanged(int value);
+    void slotCurrentChanged(int index);
+    void slotItemClicked(QListWidgetItem *item);
+    void slotValueChanged(int value);
 
 private:
-    QPoint movePoint;
-    bool mousePress;
-//    EPushButton *minButton;
-//    EPushButton *closeButton;
-    QPushButton *minButton;
-    QPushButton *closeButton;
-    QRect rectMove;
-    QTabWidget *tabWidget;
+    QTabWidget  *tabWidget;
     QListWidget *contentsWidget;
-    QWidget *widgetScrollArea;
+    QWidget     *widgetScrollArea;
     QScrollArea *scrollArea;
-    QWidget *loginWidget;
-    QWidget *panelWidget;
-    QWidget *statusWidget;
-    QWidget *sessionWidget;
-
-    QWidget *passwordWidget;
-    QWidget *qqlockWidget;
-
-    QWidget *spaceWidget;
-    bool signFlag;   // 标记是使用目录窗口更新滚动窗口
-
-
 };
 
 #endif // SETTINGPANEL_H

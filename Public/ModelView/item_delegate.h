@@ -56,6 +56,8 @@ enum ItemUserRole
     StepRole,                       // 步进数（如步进为2，则值为2的倍数）
     RegexpRole,                     // 正则，启用后（只针对文本输入框，可设置限制某个字符不能输入，如空格）
 
+    ContentRole,                    // 用于目录标签的显示
+
     /*辅助属性储存角色*/
     DecimalRole,                    // 小数点位数
     ComboMapRole,                   // 控件数据填充源,针对多项选择的控件，如下拉框，

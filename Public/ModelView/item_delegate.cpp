@@ -117,14 +117,14 @@ void ItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, cons
         if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className())
         {
             QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-            if(!lineEdit->hasAcceptableInput()) // 如果输入的数值不合法，则直接丢弃，并恢复原来的定值
-            {
-                lineEdit->setText(index.data(Qt::EditRole).toString());
-                // 弹出气泡提示
-                return;
-            }
-            else  // 输入合法，格式化字符，如浮点型，保留小数点
-            {
+//            if(!lineEdit->hasAcceptableInput()) // 如果输入的数值不合法，则直接丢弃，并恢复原来的定值
+//            {
+//                lineEdit->setText(index.data(Qt::EditRole).toString());
+//                // 弹出气泡提示
+//                return;
+//            }
+//            else  // 输入合法，格式化字符，如浮点型，保留小数点
+//            {
                 if(lineEdit->validator() ==NULL) return;
                 if(lineEdit->validator()->metaObject()->className() == QDoubleValidator::staticMetaObject.className())
                 {
@@ -132,7 +132,7 @@ void ItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, cons
                     //qDebug() << doubleValidator->decimals();
                     lineEdit->setText(QString().setNum(lineEdit->text().toFloat(),'f',doubleValidator->decimals()));      // 恢复原值
                 }
-            }
+            //}
         }
     }
     else
