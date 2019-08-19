@@ -188,6 +188,17 @@ void ItemDelegate::paint(QPainter *painter,const QStyleOptionViewItem &option, c
         QStyledItemDelegate::paint(painter,option,index);
     }
 }
+bool ItemDelegate::eventFilter(QObject *editor, QEvent *event)
+{
+    if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())
+    {
+        if(event->type() ==QEvent::Wheel)
+        {
+            return true;
+        }
+    }
+    return QStyledItemDelegate::eventFilter(editor, event);
+}
 
 
 bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)

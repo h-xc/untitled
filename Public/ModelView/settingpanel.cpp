@@ -152,6 +152,7 @@ void SettingPanel::initTabWidget()
                 tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
                 int scrollBarWidth = 50;
                 tableView->setGeometry(X_SpacePos,Y_SpacePos,SCROLL_WIDGET_WIDTH - scrollBarWidth,tableView->rowHeight(0)*5);
+
                 //tableView->adjustSize();
                 Y_SpacePos += tableView->rowHeight(0)*5 + scrollBarWidth - Y_SPACE;
             }
@@ -210,15 +211,14 @@ void SettingPanel::initTabWidget()
                         if(ValWidget != NULL)
                         {
                             dataWidgetMapper->addMapping(ValWidget,row,col); // 与模型对应位置绑定
-                            if(NameLabel != NULL)  // 在编辑器前面添加名称
-                            {
-                                ValWidget->setGeometry(X_SpacePos+NameLabel->width(), Y_SpacePos,EDIT_WIDTH,ValWidget->height());
-                            }
-                            else
-                            {
-                                ValWidget->setGeometry(X_SpacePos, Y_SpacePos,EDIT_WIDTH,ValWidget->height());
-                            }
+                            ValWidget->adjustSize();
+                            ValWidget->setGeometry(X_SpacePos + NAME_LABEL_WIDTH, Y_SpacePos,EDIT_WIDTH,ValWidget->height());
                             ValWidget->show();
+                            if(NameLabel)
+                            {
+                               NameLabel->move(NameLabel->x(),NameLabel->y() + ValWidget->height()/2 - NameLabel->height()/2);
+                            }
+
                         }
                         X_SpacePos += X_SPACE;
                     }

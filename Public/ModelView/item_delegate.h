@@ -138,6 +138,9 @@ public:
     /*静态函数initCheck，用于初始化表格编辑器和小控件的输入合法性的初始化*/
     static bool initEditor(QWidget *editor,const QModelIndex &index);   //
 
+
+    bool eventFilter(QObject *editor, QEvent *event);
+
     void viewDisp(bool view);
 private:
 

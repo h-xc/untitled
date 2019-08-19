@@ -24,8 +24,10 @@
 #define Y_SPACE         40
 
 #define X_START_POS     30
-#define X_SPACE         200
+#define X_SPACE         250
 
+
+#define NAME_LABEL_WIDTH 100
 #define EDIT_WIDTH  70
 
 struct ModelStruct{
