@@ -18,6 +18,8 @@ public:
 private slots:
     void on_qqSetUp_clicked();
 
+    void on_LayoutTest_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

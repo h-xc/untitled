@@ -35,7 +35,8 @@ SOURCES += \
         Public/ModelView/widgetmappermodel.cpp \
         main.cpp \
         mainwindow.cpp \
-        qqSetUp/qqsetup.cpp
+        qqSetUp/qqsetup.cpp \
+    LayoutTest/layouttest.cpp
 
 HEADERS += \
         Public/ModelView/datastore.h \
@@ -47,11 +48,13 @@ HEADERS += \
         Public/ModelView/settingpanel.h \
         Public/ModelView/widgetmappermodel.h \
         mainwindow.h \
-        qqSetUp/qqsetup.h
+        qqSetUp/qqsetup.h \
+    LayoutTest/layouttest.h
 
 FORMS += \
         mainwindow.ui \
-        qqSetUp/qqsetup.ui
+        qqSetUp/qqsetup.ui \
+    LayoutTest/layouttest.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
