@@ -6,6 +6,7 @@
 #include <QStandardItemModel>
 #include <QModelIndex>
 #include ".\Public\ModelView\settingpanel.h"
+#include ".\Public\ModelView\xmldatastore.h"
 namespace Ui {
 class qqSetUp;
 }
@@ -13,14 +14,13 @@ class qqSetUp;
 class qqSetUp : public QWidget
 {
     Q_OBJECT
-
 public:
     explicit qqSetUp(QWidget *parent = 0);
     ~qqSetUp();
-    QList<ModelStruct *>  m_Models;
+
+    xmlDataStore *dataStore;
 private:
     Ui::qqSetUp *ui;
-    bool fetchOfStore();
 public slots:
 
 };

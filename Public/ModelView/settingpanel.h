@@ -8,35 +8,28 @@
 #include <QPushButton>
 #include <QStandardItemModel>
 #include "mydatawidgetmapper.h"
+#include "datastore.h"
+#include "mylineedit.h"
+#define CSS_FILE  "./SettingPanel.css"
 
-#define CSS_FILE  ""
+#define CONTENTS_TOP    0      // 目录窗口头位置（LEFT为0）
+#define CONTENTS_WIDTH  130    // 目录窗口宽度
 
-#define TAB_WIDGET_TOP  0
+#define SCROLL_TOP      CONTENTS_TOP + 1      // 滚动窗口头位置 比目录窗口低一个像素
+#define SCROLL_LEFT     CONTENTS_WIDTH + 1    // 滚动窗口左边开始位置，
+#define SCROLL_WIDGET_WIDTH    500            // 滚动窗口宽度
 
-#define CONTENTS_TOP    (TAB_WIDGET_TOP + 36)
-#define CONTENTS_WIDTH  130
-
-#define SCROLL_TOP      CONTENTS_TOP + 1
-#define SCROLL_LEFT     CONTENTS_WIDTH + 1
-#define SCROLL_WIDGET_WIDTH    500
-
-#define Y_START_POS     10
-#define Y_SPACE         40
+#define Y_START_POS     10                    // 定值控件y开始位置
+#define Y_SPACE         40                    // 定值控件y偏移位置
 
 #define X_START_POS     30
 #define X_SPACE         250
 
 
-#define NAME_LABEL_WIDTH 100
-#define EDIT_WIDTH  70
+#define NAME_LABEL_WIDTH 100                 // 定值名称宽度
+#define EDIT_WIDTH  70                       // 编辑器宽度
 
-struct ModelStruct{
-    QString Name;
-    QString View;
-    QString Type;
-    QString Content;  // 标签记录
-    QAbstractItemModel* model;
-};
+
 
 class SettingPanel : public QWidget
 {
@@ -51,22 +44,34 @@ protected:
     void  resizeEvent(QResizeEvent *event);
     void  addContent(int ax, int ay,QString label);
     const  QList<ModelStruct *>   *m_Models;
-    int    Y_endPos;
+
 
 private:
-    void initTabWidget();
+    void initWidget();
 
 
 private slots:
-    void slotCurrentChanged(int index);
     void slotItemClicked(QListWidgetItem *item);
     void slotValueChanged(int value);
 
+    //实现鼠标拖动功能
+    void mouseMoveEvent(QMouseEvent *e);     // 鼠标移动
+    void mousePressEvent(QMouseEvent *e);    // 鼠标按下
+    void mouseReleaseEvent(QMouseEvent *e);  // 鼠标弹起
+
+
+
 private:
-    QTabWidget  *tabWidget;
     QListWidget *contentsWidget;
     QWidget     *widgetScrollArea;
     QScrollArea *scrollArea;
+    int    Y_endPos;
+    bool   ItemClickedFlag;   //标记是否点击了目录导航 false 无操作  true 正在操作
+
+    //实现鼠标拖动功能
+    bool            m_bMousePressed;
+    QPoint          m_PressPosition;
+
 };
 
 #endif // SETTINGPANEL_H

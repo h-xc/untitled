@@ -38,7 +38,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTableView" name="KISetModelView"/>
+      <widget class="QTableView" name="faultSetModelView"/>
      </item>
      <item>
       <spacer name="verticalSpacer">
@@ -54,13 +54,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QTableView" name="lineSetModelView"/>
+     </item>
+     <item>
       <widget class="QTableView" name="KOSetModelView"/>
      </item>
      <item>
-      <widget class="QTableView" name="faultSetModelView"/>
-     </item>
-     <item>
-      <widget class="QTableView" name="lineSetModelView"/>
+      <widget class="QTableView" name="KISetModelView"/>
      </item>
     </layout>
    </item>

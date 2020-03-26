@@ -16,7 +16,7 @@
 
 ItemDelegate::ItemDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
-    m_isView = true;  // 默认对表格代理
+
 }
 
 ItemDelegate::~ItemDelegate()
@@ -26,8 +26,8 @@ ItemDelegate::~ItemDelegate()
 
 QWidget * ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    //qDebug()<< "createEditor";
     int thisEdit = index.data(EditTypeRole).toInt();  // 获取编辑器类型
+
     //if(thisEdit == CheckBox){}else                      // 复选框编辑器 (使用系统自带，不用创建)
     if(thisEdit == ComboBox)                              // 下拉框编辑器
     {
@@ -37,10 +37,9 @@ QWidget * ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem
     }
     else if(thisEdit == LineEdit || thisEdit ==  DefaultEdit)  // 文本输入框
     {
-        // 使用表格视图双击默认返回的lineedit   dynamic_cast<T*>(a) 将a值转换为类型为T的对象指针。如果类型T不是a的某个基类型，该操作将返回一个空指针。
+        // 使用自定义的行编辑框
         QLineEdit *LineEdit = new MyLineEdit(parent);
-        //dynamic_cast<QLineEdit*>(QStyledItemDelegate::createEditor(parent,option,index));
-        if(LineEdit != 0)
+         if(LineEdit != 0)
         {
             initEditor(LineEdit,index);// 初始化输入检测
             return LineEdit;
@@ -50,102 +49,40 @@ QWidget * ItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem
     {
         return QStyledItemDelegate::createEditor(parent,option,index);  // 若未定义类型，则调用父类原方法
     }
-
+    return NULL;
 }
 
 void ItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-    //qDebug()<< "setEditorData";
-    if(m_isView)  // 表格显示
+    /* 表格编辑器的内容初始化在此定义*/
+    if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())  // 下拉框编辑器
     {
-        /* 表格编辑器的内容初始化在此定义*/
-        if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())  // 下拉框编辑器
-        {
-            QComboBox *comboBox = static_cast<QComboBox*>(editor);               // 获取下拉框编辑器
-            int comboIndex = comboBox->findData(index.model()->data(index,Qt::EditRole));//获取模型数据在下拉框编辑器中的位置
-            comboBox->setCurrentIndex(comboIndex);                              // 将下列框的选中项更新为模型数据指定的位置
-            return;
-        }
-        else if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className()) // 文本框编辑器
-        {
-            QStyledItemDelegate::setEditorData(editor,index);
-
-            /* 显示格式在此定义  */
-            return;
-        }
-        QStyledItemDelegate::setEditorData(editor,index);  
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);               // 获取下拉框编辑器
+        int comboIndex = comboBox->findData(index.model()->data(index,Qt::EditRole));//获取模型数据在下拉框编辑器中的位置
+        comboBox->setCurrentIndex(comboIndex);                              // 将下列框的选中项更新为模型数据指定的位置
         return;
     }
-    else  // 非表格显示
+    else if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className()) // 文本框编辑器
     {
-        /* 小控件映射的内容初始化在此定义 */
-        /* 显示格式在此定义  */
-        if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())  // 下拉框编辑器
-        {
-            QComboBox *comboBox = static_cast<QComboBox*>(editor);               // 获取下拉框编辑器
-            int comboIndex = comboBox->findData(index.model()->data(index,Qt::EditRole));//获取模型数据在下拉框编辑器中的位置
-            comboBox->setCurrentIndex(comboIndex);       // 将下列框的选中项更新为模型数据指定的位置
-            return;
-        }
-        else if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className())
-        {
-            QLineEdit *LineEdit = static_cast<QLineEdit*>(editor);
-            LineEdit->setText(index.model()->data(index,Qt::EditRole).toString());   //
-            //model->setData(index, comboBox->itemData(comboBox->currentIndex(), Qt::EditRole);
-            //model->setData(index, comboBox->currentText(), TempRole);
-            //qDebug()<< "m_isView";
-            return;
-        }
-
+        QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);               //
+        lineEdit->setText(index.data(Qt::EditRole).toString());
+        return;
     }
     QStyledItemDelegate::setEditorData(editor,index);
 }
 
 void ItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-    //qDebug()<< "setModelData";
-    if(m_isView)   // 把小控件和表格的处理方式分开，以后再考虑要不要合并一起处理
+    if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())
     {
-        // 表格编辑器的内容获取在此定义
-        if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())
-        {
-            QComboBox *comboBox = static_cast<QComboBox*>(editor);
-            model->setData(index, comboBox->itemData(comboBox->currentIndex()), Qt::EditRole);
-            //model->setData(index, comboBox->currentText(), TempRole);
-            return;
-        }
-        if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className())
-        {
-            QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-//            if(!lineEdit->hasAcceptableInput()) // 如果输入的数值不合法，则直接丢弃，并恢复原来的定值
-//            {
-//                lineEdit->setText(index.data(Qt::EditRole).toString());
-//                // 弹出气泡提示
-//                return;
-//            }
-//            else  // 输入合法，格式化字符，如浮点型，保留小数点
-//            {
-                if(lineEdit->validator() ==NULL) return;
-                if(lineEdit->validator()->metaObject()->className() == QDoubleValidator::staticMetaObject.className())
-                {
-                    QDoubleValidator *doubleValidator = (QDoubleValidator*)(lineEdit->validator());
-                    //qDebug() << doubleValidator->decimals();
-                    lineEdit->setText(QString().setNum(lineEdit->text().toFloat(),'f',doubleValidator->decimals()));      // 恢复原值
-                }
-            //}
-        }
+        QComboBox *comboBox = static_cast<QComboBox*>(editor);
+        model->setData(index, comboBox->itemData(comboBox->currentIndex()), Qt::EditRole);
+        return;
     }
-    else
+    if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className())
     {
-        // 小控件的内容获取在此定义
-        // 表格编辑器的内容获取在此定义
-        if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())
-        {
-            QComboBox *comboBox = static_cast<QComboBox*>(editor);
-            model->setData(index, comboBox->itemData(comboBox->currentIndex()), Qt::EditRole);
-            //model->setData(index, comboBox->currentText(), TempRole);
-            return;
-        }
+        QStyledItemDelegate::setModelData(editor,model,index);
+        return;
     }
     QStyledItemDelegate::setModelData(editor,model,index);
 }
@@ -153,7 +90,7 @@ void ItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, cons
 void ItemDelegate::paint(QPainter *painter,const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     int thisEdit = index.data(EditTypeRole).toInt();  // 获取编辑器类型
-    if(thisEdit == ComboBox)  // 为了让表格显示下拉框的选中的显示内容，而不是显示数字值
+    if(thisEdit == ComboBox)                          // 为了让表格显示下拉框的选中的显示文本内容，而不是显示数字值
     {
         QString strTem;
         QMap<QString,QVariant> ComboMap = index.data(ComboMapRole).toMap();
@@ -172,27 +109,19 @@ void ItemDelegate::paint(QPainter *painter,const QStyleOptionViewItem &option, c
         }
         QStyleOptionViewItem myOption = option;
         initStyleOption(&myOption,index);
-        QApplication::style()->drawItemText ( painter, myOption.rect , myOption.displayAlignment, QApplication::palette(), true,strTem );
-
-        /*此段摘自QT源码*/
- //        QStyleOptionViewItem MyOption = option;
-
-//        initStyleOption(&MyOption,index);
-//        // MyOption. = strTem;
-//         //const QWidget *widget = option.widget;
-//         QStyle *style = widget ? widget->style() : QApplication::style();
-//        style()->drawControl(QStyle::CE_ItemViewItem, &MyOption, painter);
+        QApplication::style()->drawItemText ( painter, myOption.rect , myOption.displayAlignment, QApplication::palette(), true,strTem ); 
     }
     else
     {
         QStyledItemDelegate::paint(painter,option,index);
     }
 }
+
 bool ItemDelegate::eventFilter(QObject *editor, QEvent *event)
 {
     if(editor->metaObject()->className() == QComboBox::staticMetaObject.className())
     {
-        if(event->type() ==QEvent::Wheel)
+        if(event->type() ==QEvent::Wheel)//屏蔽控件的鼠标滚轮事件
         {
             return true;
         }
@@ -206,14 +135,20 @@ bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
     /* 需要输入检测*/
     if(!index.isValid())
     {
-        qDebug() << "temDelegate::initCheck  err:!index.isValid()";
+        qDebug() << "ItemDelegate::initCheck  err:!index.isValid()";
         return false;
+    }
+    if(index.data(DescRole).isValid())
+    {
+        editor->setToolTip(index.data(DescRole).toString());
     }
     if(editor->metaObject()->className() == QLineEdit::staticMetaObject.className())
     {
         QLineEdit *LineEdit  = static_cast<QLineEdit*>(editor);
         int ThisCheck = index.data(CheckTypeRole).toInt(); // 获取数据检测类型
         // 如果有定义正则不在做其它限制条件
+
+
         if(index.data(RegexpRole).isValid())
         {
             QRegExp reg(index.data(RegexpRole).toString());//
@@ -345,12 +280,7 @@ bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
         {
             SpinBox->setDecimals(0);
         }
-
     }
     return true;
 }
 
-void ItemDelegate::viewDisp(bool view)
-{
-    m_isView = view;
-}

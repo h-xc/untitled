@@ -47,7 +47,7 @@ template<typename T>
 MemItemMapper<T>::MemItemMapper(T *memVal)
 {
     m_val       = memVal;
-    QStandardItem::setData(qMetaTypeId<T>(),DataTypeRole);  // 标记数据类型
+    QStandardItem::setData(qMetaTypeId<T>(),ItemDelegate::DataTypeRole);  // 标记数据类型
     QStandardItem::setData(QVariant::fromValue<T>(*memVal),Qt::EditRole); // 模型中数据
 }
 
@@ -58,15 +58,15 @@ void MemItemMapper<T>::setData(const QVariant &value, int role)
 {
     QStandardItem::setData(value,role);
     //qDebug() << "setData" << value;
-    if(role ==  StoreCtrlRole)  // 储存库操作 提交 恢复  // 应该要新开一个函数去实现，但这样也可以实现，以后优化再去写了
+    if(role ==  ItemDelegate::StoreCtrlRole)  // 储存库操作 提交 恢复  // 应该要新开一个函数去实现，但这样也可以实现，以后优化再去写了
     {
-        if(QStandardItem::data(StoreCtrlRole).toInt() == _SUBMIT)  // 模型提交到内存
+        if(QStandardItem::data(ItemDelegate::StoreCtrlRole).toInt() == ItemDelegate::_SUBMIT)  // 模型提交到内存
         {
             QVariant tmp = QStandardItem::data(Qt::EditRole);  // 获取到模型中的数据
             (*m_val) = tmp.value<T>();  // 转换后赋值到内存变量   // 赋值到内存中
             qDebug() << "submit" << (*m_val);
         }
-        else if(QStandardItem::data(StoreCtrlRole).toInt() == _REVERT)  // 内存提交到模型
+        else if(QStandardItem::data(ItemDelegate::StoreCtrlRole).toInt() == ItemDelegate::_REVERT)  // 内存提交到模型
         {
             qDebug() << "revert"  << (*m_val);
             QStandardItem::setData(QVariant::fromValue<T>(*m_val),Qt::EditRole); // 内存中数据提交到模型中

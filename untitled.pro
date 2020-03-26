@@ -36,7 +36,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         qqSetUp/qqsetup.cpp \
-    LayoutTest/layouttest.cpp
+    LayoutTest/layouttest.cpp \
+    Public/ModelView/xmldatastore.cpp
 
 HEADERS += \
         Public/ModelView/datastore.h \
@@ -49,7 +50,8 @@ HEADERS += \
         Public/ModelView/widgetmappermodel.h \
         mainwindow.h \
         qqSetUp/qqsetup.h \
-    LayoutTest/layouttest.h
+    LayoutTest/layouttest.h \
+    Public/ModelView/xmldatastore.h
 
 FORMS += \
         mainwindow.ui \

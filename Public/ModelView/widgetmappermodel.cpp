@@ -10,7 +10,6 @@ WidgetMapperModel::WidgetMapperModel(QObject *parent) : QStandardItemModel(paren
 
 void WidgetMapperModel::setItemDelegate(ItemDelegate *delegate)
 {
-    delegate->viewDisp(false);   // 非表格视图模式
     m_itemBindWidge.setItemDelegate(delegate);
 }
 

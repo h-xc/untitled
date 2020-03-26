@@ -1,10 +1,10 @@
 #include "layouttest.h"
 #include "ui_layouttest.h"
 
-#include <QtGui/QScrollArea>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
-#include <QtGui/QLabel>
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QWidget>
+#include <QLabel>
 LayoutTest::LayoutTest(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::LayoutTest)

@@ -1,84 +1,170 @@
 #include "datastore.h"
-#include "item_delegate.h"
+
 #include <QDebug>
+
+
 DataStore::DataStore(QObject *parent) : QObject(parent)
 {
     itemChangedList.clear();
     m_isChangedFlag = false;
-    m_restoreFlag   = false;
-    m_initItemModelFlag = false;
 }
 void DataStore::itemChanged(QStandardItem *item)
 {
-    //    if(m_initItemModelFlag == false)
-    //    {
-    //        itemList.insert(item);
-    //        qDebug() << "itemList"<<itemList.size() << item;
-    //        return;
-    //    }
     itemChangedList.insert(item);
-    m_isChangedFlag = true;
-    qDebug() << "itemChangedList" <<itemChangedList.size() << item;
 }
 
 bool  DataStore::submit()       //  确认修改，提供定值修改确认
 {
-    foreach (QStandardItem *value, itemChangedList)
+    if(!itemChangedList.isEmpty())
     {
-        value->setData(_SUBMIT,StoreCtrlRole);
+        foreach (QStandardItem *value, itemChangedList)
+        {
+            value->setData(value->data(Qt::EditRole),ItemDelegate::TempRole);  // 如果确定修改，则储存一份，用于撤销修改时使用
+        }
+        saveToStore();
+        itemChangedList.clear();  // 清除记录的改变的项
+        emit FixValChanged();  // 发送定值改变事件
     }
-    itemChangedList.clear();  // 清除改变事件
-
     return true;
 }
 
 bool  DataStore::revert()       //  丢弃修改，恢复原定值 接口函数
 {
-    if(m_restoreFlag == true)   // 进行了恢复默认操作
+    foreach (QStandardItem *value, itemChangedList)  // 只恢复修改过的定值
     {
-        //        fetchOfStore();         //  需要从储存载体中获取原设定值，因为内存变量已经在恢复默认时被修改
-        //        foreach (QStandardItem *value, itemList)  // 更新所有view
-        //        {
-        //            value->setData(revert,StoreCtrlRole);
-        //        }
-        //        qDebug() << "revert"  << m_restoreFlag ;
-        qDebug() << "fetchOfStore"  ;
-        qDebug() << "AllRevert"  ;
-        m_restoreFlag = false;
+        value->setData(value->data(ItemDelegate::TempRole),Qt::EditRole);  // 如果确定修改，则储存一份，用于撤销修改时使用
     }
-    else
+    itemChangedList.clear();
+    return true;
+}
+
+bool  DataStore::restore()     // 恢复默认，提供定值修改按钮方法 接口函数
+{
+    for(int pos=0;pos <m_Models.count();pos++)
     {
-        foreach (QStandardItem *value, itemChangedList)  // 只恢复修改过的定值
-        {
-            value->setData(_REVERT,StoreCtrlRole);
-        }
-        itemChangedList.clear();
+        for(int row=0;row <m_Models[pos]->model->rowCount();row ++)
+            for(int col = 0;col <m_Models[pos]->model->columnCount();col++)
+            {
+                QModelIndex index = m_Models[pos]->model->index(row,col);
+                if(!m_Models[pos]->model->data(index,ItemDelegate::VarNameRole).toString().isEmpty())
+                {
+                    m_Models[pos]->model->setData(index,m_Models[pos]->model->data(index,ItemDelegate::DefaultValRole),Qt::EditRole);
+                }
+            }
     }
-    qDebug() << "DataStore::revert"  ;
+    return true;
+}
+
+QStandardItem * DataStore::initItem(QString VarName,
+                                      QString Name,
+                                      QString Unit,
+                                      QString Desc,
+                                      ItemDelegate::ShowType showType,
+                                      ItemDelegate::CheckType checkType,
+                                      int DataType,
+                                      ItemDelegate::EditType editType,
+                                      QVariant DefaultVal,
+                                      QVariant RangMin,
+                                      QVariant RangMax,
+                                      QVariant Step,
+                                      QString Regexp,
+                                      QString Content,
+                                      int Decimal,
+                                      QMap<QString,QVariant> ComboMap)
+{
+    QStandardItem *item =new QStandardItem();
+
+    if(!VarName.isEmpty())
+        item->setData(VarName,ItemDelegate::VarNameRole);
+
+    if(!Name.isEmpty())
+        item->setData(Name,ItemDelegate::NameRole);
+
+    if(!Unit.isEmpty())
+        item->setData(Unit,ItemDelegate::UnitRole);
+
+    if(!Desc.isEmpty())
+        item->setData(Desc,ItemDelegate::DescRole);
+    item->setData(showType,ItemDelegate::ShowTypeRole);
+    item->setData(checkType,ItemDelegate::CheckTypeRole);
+    item->setData(DataType,ItemDelegate::DataTypeRole);
+    item->setData(editType,ItemDelegate::EditTypeRole);
+
+    if(DefaultVal.isValid())
+        item->setData(RangMin,ItemDelegate::DefaultValRole);
+
+    if(RangMin.isValid())
+        item->setData(RangMin,ItemDelegate::RangMinRole);
+
+    if(RangMax.isValid())
+        item->setData(RangMax,ItemDelegate::RangMaxRole);
+
+    if(Step.isValid())
+        item->setData(Step,ItemDelegate::StepRole);
+
+    if(!Regexp.isEmpty())
+        item->setData(Regexp,ItemDelegate::RegexpRole);
+
+    if(!Content.isEmpty())
+        item->setData(Content,ItemDelegate::ContentRole);
+
+    if(Decimal>0)
+        item->setData(Decimal,ItemDelegate::DecimalRole);
+
+    if(!ComboMap.isEmpty())
+        item->setData(ComboMap,ItemDelegate::ComboMapRole);
+    return item;
+}
+
+
+void DataStore::CleanModels()
+{
+    for(int pos;pos<m_Models.count();pos++)
+    {
+        delete m_Models[pos]->model;
+    }
+}
+
+bool DataStore::createStore()
+{
     return true;
 }
 bool DataStore::saveToStore()
 {
-    emit FixValChanged();  // 发送定值改变事件
     return true;
-}  // 保存定值，将内存变量保存到储存载体中
-
-
-
-bool  DataStore::restore()     // 恢复默认，提供定值修改按钮方法 接口函数
+}
+bool DataStore::fetchOfStore()
 {
-    m_restoreFlag = true;
-    //    initFixVal();   // 内存变量初始化为默认值
-    //    foreach (QStandardItem *value, itemList)  // 更新所有view
-    //    {
-    //        value->setData(revert,StoreCtrlRole);
-    //    }
-    qDebug() << "restore" ;
     return true;
 }
 void DataStore::initItemModel()
 {
-    m_initItemModelFlag = true; // 标记初始化已经完成
+
+}
+
+QVariant DataStore::getValData(QString modelName,QString itemName,int role /*= Qt::EditRole*/)
+{
+    for(int pos= 0;pos<m_Models.count();pos++)
+    {
+        if(m_Models[pos]->Name == modelName)
+        {
+            return m_Models[pos]->itemMap.value(itemName)->data(role);
+        }
+    }
+    return QVariant();
+}
+
+QVariant DataStore::getValData(QString modelName,int itemRow,int itemCol,int role /*= Qt::EditRole*/)
+{
+    for(int pos= 0;pos<m_Models.count();pos++)
+    {
+        if(m_Models[pos]->Name == modelName)
+        {
+            QModelIndex index =  m_Models[pos]->model->index(itemRow,itemCol);
+            return m_Models[pos]->model->data(index,role);
+        }
+    }
+    return QVariant();
 }
 
 
