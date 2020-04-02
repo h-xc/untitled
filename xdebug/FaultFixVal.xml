@@ -1,0 +1,1849 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataBase Version="1.0">
+ <Model Name="faultSetModel" Type="QStandardItemModel" ContentRole="" View="Control">
+  <Data ItemRow="0" VarNameRole="resonance_rpt" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="功能投退" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="谐振报告"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="0" VarNameRole="resonance_N_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="CheckBox" ShowTypeRole="DefaultShow" NameRole="谐振零序槛值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="7" StepRole="" DataTypeRole="">0</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="freq_drift" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="工频浮动值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="66" StepRole="" DataTypeRole="">22</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="insulation_rpt" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="绝缘报告"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="2" VarNameRole="insulation_N_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="绝缘电压槛值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="20" StepRole="" DataTypeRole="">20</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="insulation_V_time" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="绝缘判断延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="20" StepRole="" DataTypeRole="">20</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="N_V_incr_crite_enab" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="判据使能" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="零序电压增量判据"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="使能">true</Combo>
+   <Combo InterfaceName="禁止">false</Combo>
+  </Data>
+  <Data ItemRow="4" VarNameRole="N_V_incr" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="零序电压增量值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="10" StepRole="" DataTypeRole="">10</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="Bus_A_crite_enab" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="母线电流判据"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="使能">true</Combo>
+   <Combo InterfaceName="禁止">false</Combo>
+  </Data>
+  <Data ItemRow="5" VarNameRole="P_A_drift" ItemCol="1">
+   <Interface DescRole="0mA~100mA" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="相电流浮动"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="100" StepRole="" DataTypeRole="">100</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="angle_crite" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="角度判据"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="使能">true</Combo>
+   <Combo InterfaceName="禁止">false</Combo>
+  </Data>
+  <Data ItemRow="7" VarNameRole="V_unbal_Modify_crite" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="电压失衡修正"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="使能">true</Combo>
+   <Combo InterfaceName="禁止">false</Combo>
+  </Data>
+  <Data ItemRow="8" VarNameRole="metalBus_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="金属判断设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="金属母线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="8" VarNameRole="metalline_action" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="金属馈线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="9" VarNameRole="metal_P_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="金属相电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="10" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="metal_N_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="金属零序电压"/>
+   <Val RangMinRole="0" DecimalRole="2" RangMaxRole="100" UnitRole="" DefaultValRole="2.00" StepRole="" DataTypeRole="">2.00</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="metal_angle" ItemCol="0">
+   <Interface DescRole="0度~360度" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="金属角度判据"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="360" UnitRole="" DefaultValRole="7" StepRole="" DataTypeRole="">7</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="arcBus_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="弧光判断设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="弧光母线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="11" VarNameRole="arcline_action" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="弧光馈线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="12" VarNameRole="arc_P_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="弧光相电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="3" StepRole="" DataTypeRole="">3</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="arc_N_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="弧光零序电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="4" StepRole="" DataTypeRole="">4</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="arc_angle" ItemCol="0">
+   <Interface DescRole="0度~360度" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="弧光角度判据"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="360" UnitRole="" DefaultValRole="20" StepRole="" DataTypeRole="">20</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="midRes_rpt" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="中阻判断设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="中阻报告"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="15" VarNameRole="midResBus_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="中阻母线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="15" VarNameRole="midResline_action" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="中阻馈线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="16" VarNameRole="midRes_P_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="中阻相电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="midRes_N_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="中阻零序电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="6" StepRole="" DataTypeRole="">6</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="midRes_angle" ItemCol="0">
+   <Interface DescRole="0度~360度" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="中阻角度判据"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="360" UnitRole="" DefaultValRole="30" StepRole="" DataTypeRole="">30</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="highResBus_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="高阻判断设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="高阻母线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="18" VarNameRole="highResline_action" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="高阻馈线"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="19" VarNameRole="highRes_P_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="高阻相电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="7" StepRole="" DataTypeRole="">7</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="highRes_N_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="高阻零序电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="8" StepRole="" DataTypeRole="">8</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="highRes_angle" ItemCol="0">
+   <Interface DescRole="0度~360度" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="高阻角度判据"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="360" UnitRole="" DefaultValRole="75" StepRole="" DataTypeRole="">75</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="G_neutral" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="中性点类型设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="中性点接地方式"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="0" StepRole="" DataTypeRole="">0</Val>
+   <Combo InterfaceName="小电流接地">0</Combo>
+   <Combo InterfaceName="消弧线圈接地">1</Combo>
+  </Data>
+  <Data ItemRow="21" VarNameRole="neutral_ctrl_enab" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="中性点控制"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="使能">true</Combo>
+   <Combo InterfaceName="禁止">false</Combo>
+  </Data>
+  <Data ItemRow="22" VarNameRole="T1_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="保护时序设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="T1时序"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="22" VarNameRole="T1_time" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="T1阶段延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="T2_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="T2时序"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="23" VarNameRole="T2_time" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="T2阶段延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="T3_action" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="T3时序"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="24" VarNameRole="T3_time" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="T3阶段延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="normal_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="基本电压设定" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="正常电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="60" StepRole="" DataTypeRole="">60</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="normal_up_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="正常电压上限值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="65" StepRole="" DataTypeRole="">65</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="normal_low_V" ItemCol="1">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="正常电压下限值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="55" StepRole="" DataTypeRole="">55</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="ground_N_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="接地零序电压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="9" StepRole="" DataTypeRole="">9</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="over_V_rpt" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="过压设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="欠压报告"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="29" VarNameRole="over_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="过压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="80" StepRole="" DataTypeRole="">80</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="over_V_time" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="过压延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="under_V_rpt" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="欠压设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="欠压报告"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="31" VarNameRole="under_V" ItemCol="0">
+   <Interface DescRole="0V~100V" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="欠压"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="40" StepRole="" DataTypeRole="">40</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="under_V_time" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="欠压延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="32" VarNameRole="line_rpt" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="选线设置" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="线路报告"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="报告">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="33" VarNameRole="line_RSA_1" ItemCol="0">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="选线算法1权值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="60" StepRole="" DataTypeRole="">60</Val>
+  </Data>
+  <Data ItemRow="33" VarNameRole="line_RSA_2" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="选线算法2权值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="60" StepRole="" DataTypeRole="">60</Val>
+  </Data>
+  <Data ItemRow="34" VarNameRole="line_RSA_3" ItemCol="0">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="选线算法3权值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="60" StepRole="" DataTypeRole="">60</Val>
+  </Data>
+  <Data ItemRow="34" VarNameRole="line_RSA_4" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="选线算法4权值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="60" StepRole="" DataTypeRole="">60</Val>
+  </Data>
+  <Data ItemRow="35" VarNameRole="lineTwo_enab" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="选线两条"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="1条">false</Combo>
+   <Combo InterfaceName="2条">true</Combo>
+  </Data>
+  <Data ItemRow="36" VarNameRole="selline_A" ItemCol="0">
+   <Interface DescRole="0mA~100mA" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="选线幅值"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="30" StepRole="" DataTypeRole="">30</Val>
+  </Data>
+  <Data ItemRow="37" VarNameRole="trip_enab" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="使能报告" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole="选线跳闸使能"/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="false" StepRole="" DataTypeRole="">false</Val>
+   <Combo InterfaceName="使能">true</Combo>
+   <Combo InterfaceName="禁止">false</Combo>
+  </Data>
+  <Data ItemRow="38" VarNameRole="StatsTripNum" ItemCol="0">
+   <Interface DescRole="0次~100次" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="统计跳闸次数"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="38" VarNameRole="StatsTrip_time" ItemCol="1">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="统计跳闸时间"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="240" StepRole="" DataTypeRole="">240</Val>
+  </Data>
+  <Data ItemRow="39" VarNameRole="line_time" ItemCol="0">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="线路跳闸延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="100000" StepRole="" DataTypeRole="">100000</Val>
+  </Data>
+  <Data ItemRow="40" VarNameRole="lock_time" ItemCol="0">
+   <Interface DescRole="0s~100s" RegexpRole="" ContentRole="其它设定" Editable="true" CheckTypeRole="Float" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole="闭锁延时"/>
+   <Val RangMinRole="0" DecimalRole="" RangMaxRole="100" UnitRole="" DefaultValRole="60" StepRole="" DataTypeRole="">60</Val>
+  </Data>
+ </Model>
+ <Model Name="lineSetModel" Type="QStandardItemModel" ContentRole="线路设置" View="Table">
+  <Data ItemRow="0" VarNameRole="line0.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="馈线配置" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="0" VarNameRole="line0.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线1" StepRole="" DataTypeRole="">馈线1</Val>
+  </Data>
+  <Data ItemRow="0" VarNameRole="line0.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="0" VarNameRole="line0.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="1" VarNameRole="line1.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="2" StepRole="" DataTypeRole="">2</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="line1.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线2" StepRole="" DataTypeRole="">馈线2</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="line1.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="1" VarNameRole="line1.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="2" VarNameRole="line2.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="3" StepRole="" DataTypeRole="">3</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="line2.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线3" StepRole="" DataTypeRole="">馈线3</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="line2.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="2" VarNameRole="line2.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="3" VarNameRole="line3.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="4" StepRole="" DataTypeRole="">4</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="line3.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线4" StepRole="" DataTypeRole="">馈线4</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="line3.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="3" VarNameRole="line3.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="4" VarNameRole="line4.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="line4.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线5" StepRole="" DataTypeRole="">馈线5</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="line4.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="4" VarNameRole="line4.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="5" VarNameRole="line5.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="6" StepRole="" DataTypeRole="">6</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="line5.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线6" StepRole="" DataTypeRole="">馈线6</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="line5.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="5" VarNameRole="line5.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="6" VarNameRole="line6.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="7" StepRole="" DataTypeRole="">7</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="line6.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线7" StepRole="" DataTypeRole="">馈线7</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="line6.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="6" VarNameRole="line6.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="7" VarNameRole="line7.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="8" StepRole="" DataTypeRole="">8</Val>
+  </Data>
+  <Data ItemRow="7" VarNameRole="line7.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线8" StepRole="" DataTypeRole="">馈线8</Val>
+  </Data>
+  <Data ItemRow="7" VarNameRole="line7.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="7" VarNameRole="line7.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="8" VarNameRole="line8.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="9" StepRole="" DataTypeRole="">9</Val>
+  </Data>
+  <Data ItemRow="8" VarNameRole="line8.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线9" StepRole="" DataTypeRole="">馈线9</Val>
+  </Data>
+  <Data ItemRow="8" VarNameRole="line8.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="8" VarNameRole="line8.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="9" VarNameRole="line9.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="10" StepRole="" DataTypeRole="">10</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="line9.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线10" StepRole="" DataTypeRole="">馈线10</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="line9.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="9" VarNameRole="line9.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="10" VarNameRole="line10.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="11" StepRole="" DataTypeRole="">11</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="line10.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线11" StepRole="" DataTypeRole="">馈线11</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="line10.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="10" VarNameRole="line10.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="11" VarNameRole="line11.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="12" StepRole="" DataTypeRole="">12</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="line11.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线12" StepRole="" DataTypeRole="">馈线12</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="line11.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="11" VarNameRole="line11.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="12" VarNameRole="line12.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="13" StepRole="" DataTypeRole="">13</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="line12.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线13" StepRole="" DataTypeRole="">馈线13</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="line12.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="12" VarNameRole="line12.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="13" VarNameRole="line13.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="14" StepRole="" DataTypeRole="">14</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="line13.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线14" StepRole="" DataTypeRole="">馈线14</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="line13.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="13" VarNameRole="line13.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="14" VarNameRole="line14.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="15" StepRole="" DataTypeRole="">15</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="line14.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线15" StepRole="" DataTypeRole="">馈线15</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="line14.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="14" VarNameRole="line14.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="15" VarNameRole="line15.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="16" StepRole="" DataTypeRole="">16</Val>
+  </Data>
+  <Data ItemRow="15" VarNameRole="line15.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线16" StepRole="" DataTypeRole="">馈线16</Val>
+  </Data>
+  <Data ItemRow="15" VarNameRole="line15.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="15" VarNameRole="line15.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="16" VarNameRole="line16.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="17" StepRole="" DataTypeRole="">17</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="line16.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线17" StepRole="" DataTypeRole="">馈线17</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="line16.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="16" VarNameRole="line16.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="17" VarNameRole="line17.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="18" StepRole="" DataTypeRole="">18</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="line17.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线18" StepRole="" DataTypeRole="">馈线18</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="line17.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="17" VarNameRole="line17.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="18" VarNameRole="line18.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="19" StepRole="" DataTypeRole="">19</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="line18.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线19" StepRole="" DataTypeRole="">馈线19</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="line18.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="18" VarNameRole="line18.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="19" VarNameRole="line19.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="20" StepRole="" DataTypeRole="">20</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="line19.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线20" StepRole="" DataTypeRole="">馈线20</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="line19.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="19" VarNameRole="line19.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="20" VarNameRole="line20.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="21" StepRole="" DataTypeRole="">21</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="line20.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线21" StepRole="" DataTypeRole="">馈线21</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="line20.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="20" VarNameRole="line20.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="21" VarNameRole="line21.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="22" StepRole="" DataTypeRole="">22</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="line21.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线22" StepRole="" DataTypeRole="">馈线22</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="line21.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="21" VarNameRole="line21.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="22" VarNameRole="line22.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="23" StepRole="" DataTypeRole="">23</Val>
+  </Data>
+  <Data ItemRow="22" VarNameRole="line22.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线23" StepRole="" DataTypeRole="">馈线23</Val>
+  </Data>
+  <Data ItemRow="22" VarNameRole="line22.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="22" VarNameRole="line22.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="23" VarNameRole="line23.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="24" StepRole="" DataTypeRole="">24</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="line23.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线24" StepRole="" DataTypeRole="">馈线24</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="line23.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="23" VarNameRole="line23.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="24" VarNameRole="line24.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="25" StepRole="" DataTypeRole="">25</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="line24.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线25" StepRole="" DataTypeRole="">馈线25</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="line24.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="24" VarNameRole="line24.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="25" VarNameRole="line25.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="26" StepRole="" DataTypeRole="">26</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="line25.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线26" StepRole="" DataTypeRole="">馈线26</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="line25.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="25" VarNameRole="line25.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="26" VarNameRole="line26.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="27" StepRole="" DataTypeRole="">27</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="line26.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线27" StepRole="" DataTypeRole="">馈线27</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="line26.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="26" VarNameRole="line26.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="27" VarNameRole="line27.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="28" StepRole="" DataTypeRole="">28</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="line27.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线28" StepRole="" DataTypeRole="">馈线28</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="line27.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="27" VarNameRole="line27.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="28" VarNameRole="line28.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="29" StepRole="" DataTypeRole="">29</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="line28.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线29" StepRole="" DataTypeRole="">馈线29</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="line28.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="28" VarNameRole="line28.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="29" VarNameRole="line29.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="30" StepRole="" DataTypeRole="">30</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="line29.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线30" StepRole="" DataTypeRole="">馈线30</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="line29.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="29" VarNameRole="line29.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="30" VarNameRole="line30.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="31" StepRole="" DataTypeRole="">31</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="line30.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线31" StepRole="" DataTypeRole="">馈线31</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="line30.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="30" VarNameRole="line30.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+  <Data ItemRow="31" VarNameRole="line31.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="32" StepRole="" DataTypeRole="">32</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="line31.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="馈线32" StepRole="" DataTypeRole="">馈线32</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="line31.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="31" VarNameRole="line31.polar" ItemCol="3">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="反接">false</Combo>
+   <Combo InterfaceName="正接">true</Combo>
+  </Data>
+ </Model>
+ <Model Name="KOSetModel" Type="QStandardItemModel" ContentRole="开出设置" View="Table">
+  <Data ItemRow="0" VarNameRole="KO0.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="开出使能" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="0" VarNameRole="KO0.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出1" StepRole="" DataTypeRole="">开出1</Val>
+  </Data>
+  <Data ItemRow="0" VarNameRole="KO0.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="开出">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="1" VarNameRole="KO1.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="2" StepRole="" DataTypeRole="">2</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="KO1.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出2" StepRole="" DataTypeRole="">开出2</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="KO1.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="2" VarNameRole="KO2.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="3" StepRole="" DataTypeRole="">3</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="KO2.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出3" StepRole="" DataTypeRole="">开出3</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="KO2.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="3" VarNameRole="KO3.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="4" StepRole="" DataTypeRole="">4</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="KO3.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出4" StepRole="" DataTypeRole="">开出4</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="KO3.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="4" VarNameRole="KO4.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="KO4.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出5" StepRole="" DataTypeRole="">开出5</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="KO4.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="5" VarNameRole="KO5.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="6" StepRole="" DataTypeRole="">6</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="KO5.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出6" StepRole="" DataTypeRole="">开出6</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="KO5.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="6" VarNameRole="KO6.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="7" StepRole="" DataTypeRole="">7</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="KO6.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出7" StepRole="" DataTypeRole="">开出7</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="KO6.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="7" VarNameRole="KO7.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="8" StepRole="" DataTypeRole="">8</Val>
+  </Data>
+  <Data ItemRow="7" VarNameRole="KO7.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出8" StepRole="" DataTypeRole="">开出8</Val>
+  </Data>
+  <Data ItemRow="7" VarNameRole="KO7.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="8" VarNameRole="KO8.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="9" StepRole="" DataTypeRole="">9</Val>
+  </Data>
+  <Data ItemRow="8" VarNameRole="KO8.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出9" StepRole="" DataTypeRole="">开出9</Val>
+  </Data>
+  <Data ItemRow="8" VarNameRole="KO8.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="9" VarNameRole="KO9.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="10" StepRole="" DataTypeRole="">10</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="KO9.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出10" StepRole="" DataTypeRole="">开出10</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="KO9.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="10" VarNameRole="KO10.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="11" StepRole="" DataTypeRole="">11</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="KO10.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出11" StepRole="" DataTypeRole="">开出11</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="KO10.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="11" VarNameRole="KO11.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="12" StepRole="" DataTypeRole="">12</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="KO11.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出12" StepRole="" DataTypeRole="">开出12</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="KO11.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="12" VarNameRole="KO12.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="13" StepRole="" DataTypeRole="">13</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="KO12.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出13" StepRole="" DataTypeRole="">开出13</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="KO12.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="13" VarNameRole="KO13.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="14" StepRole="" DataTypeRole="">14</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="KO13.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出14" StepRole="" DataTypeRole="">开出14</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="KO13.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="14" VarNameRole="KO14.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="15" StepRole="" DataTypeRole="">15</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="KO14.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出15" StepRole="" DataTypeRole="">开出15</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="KO14.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="15" VarNameRole="KO15.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="16" StepRole="" DataTypeRole="">16</Val>
+  </Data>
+  <Data ItemRow="15" VarNameRole="KO15.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出16" StepRole="" DataTypeRole="">开出16</Val>
+  </Data>
+  <Data ItemRow="15" VarNameRole="KO15.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="16" VarNameRole="KO16.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="17" StepRole="" DataTypeRole="">17</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="KO16.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出17" StepRole="" DataTypeRole="">开出17</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="KO16.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="17" VarNameRole="KO17.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="18" StepRole="" DataTypeRole="">18</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="KO17.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出18" StepRole="" DataTypeRole="">开出18</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="KO17.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="18" VarNameRole="KO18.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="19" StepRole="" DataTypeRole="">19</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="KO18.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出19" StepRole="" DataTypeRole="">开出19</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="KO18.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="19" VarNameRole="KO19.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="20" StepRole="" DataTypeRole="">20</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="KO19.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出20" StepRole="" DataTypeRole="">开出20</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="KO19.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="20" VarNameRole="KO20.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="21" StepRole="" DataTypeRole="">21</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="KO20.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出21" StepRole="" DataTypeRole="">开出21</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="KO20.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="21" VarNameRole="KO21.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="22" StepRole="" DataTypeRole="">22</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="KO21.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出22" StepRole="" DataTypeRole="">开出22</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="KO21.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="22" VarNameRole="KO22.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="23" StepRole="" DataTypeRole="">23</Val>
+  </Data>
+  <Data ItemRow="22" VarNameRole="KO22.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出23" StepRole="" DataTypeRole="">开出23</Val>
+  </Data>
+  <Data ItemRow="22" VarNameRole="KO22.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="23" VarNameRole="KO23.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="24" StepRole="" DataTypeRole="">24</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="KO23.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出24" StepRole="" DataTypeRole="">开出24</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="KO23.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="24" VarNameRole="KO24.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="25" StepRole="" DataTypeRole="">25</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="KO24.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出25" StepRole="" DataTypeRole="">开出25</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="KO24.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="25" VarNameRole="KO25.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="26" StepRole="" DataTypeRole="">26</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="KO25.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出26" StepRole="" DataTypeRole="">开出26</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="KO25.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="26" VarNameRole="KO26.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="27" StepRole="" DataTypeRole="">27</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="KO26.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出27" StepRole="" DataTypeRole="">开出27</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="KO26.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="27" VarNameRole="KO27.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="28" StepRole="" DataTypeRole="">28</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="KO27.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出28" StepRole="" DataTypeRole="">开出28</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="KO27.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="28" VarNameRole="KO28.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="29" StepRole="" DataTypeRole="">29</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="KO28.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出29" StepRole="" DataTypeRole="">开出29</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="KO28.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="29" VarNameRole="KO29.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="30" StepRole="" DataTypeRole="">30</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="KO29.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出30" StepRole="" DataTypeRole="">开出30</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="KO29.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="30" VarNameRole="KO30.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="31" StepRole="" DataTypeRole="">31</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="KO30.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出31" StepRole="" DataTypeRole="">开出31</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="KO30.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="31" VarNameRole="KO31.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="32" StepRole="" DataTypeRole="">32</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="KO31.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开出32" StepRole="" DataTypeRole="">开出32</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="KO31.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+ </Model>
+ <Model Name="KISetModel" Type="QStandardItemModel" ContentRole="开入设置" View="Table">
+  <Data ItemRow="0" VarNameRole="KI0.index" ItemCol="0">
+   <Interface DescRole="KI0.index" RegexpRole="" ContentRole="开入使能" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="1" StepRole="" DataTypeRole="">1</Val>
+  </Data>
+  <Data ItemRow="0" VarNameRole="KI0.Name" ItemCol="1">
+   <Interface DescRole="至少输入大于3个字节" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="3" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入1" StepRole="" DataTypeRole="">开入1</Val>
+  </Data>
+  <Data ItemRow="0" VarNameRole="KI0.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="1" VarNameRole="KI1.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="2" StepRole="" DataTypeRole="">2</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="KI1.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入2" StepRole="" DataTypeRole="">开入2</Val>
+  </Data>
+  <Data ItemRow="1" VarNameRole="KI1.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="2" VarNameRole="KI2.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="3" StepRole="" DataTypeRole="">3</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="KI2.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入3" StepRole="" DataTypeRole="">开入3</Val>
+  </Data>
+  <Data ItemRow="2" VarNameRole="KI2.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="3" VarNameRole="KI3.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="4" StepRole="" DataTypeRole="">4</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="KI3.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入4" StepRole="" DataTypeRole="">开入4</Val>
+  </Data>
+  <Data ItemRow="3" VarNameRole="KI3.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="4" VarNameRole="KI4.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="5" StepRole="" DataTypeRole="">5</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="KI4.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入5" StepRole="" DataTypeRole="">开入5</Val>
+  </Data>
+  <Data ItemRow="4" VarNameRole="KI4.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="5" VarNameRole="KI5.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="6" StepRole="" DataTypeRole="">6</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="KI5.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入6" StepRole="" DataTypeRole="">开入6</Val>
+  </Data>
+  <Data ItemRow="5" VarNameRole="KI5.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="6" VarNameRole="KI6.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="7" StepRole="" DataTypeRole="">7</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="KI6.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入7" StepRole="" DataTypeRole="">开入7</Val>
+  </Data>
+  <Data ItemRow="6" VarNameRole="KI6.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="7" VarNameRole="KI7.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="8" StepRole="" DataTypeRole="">8</Val>
+  </Data>
+  <Data ItemRow="7" VarNameRole="KI7.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入8" StepRole="" DataTypeRole="">开入8</Val>
+  </Data>
+  <Data ItemRow="7" VarNameRole="KI7.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="8" VarNameRole="KI8.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="9" StepRole="" DataTypeRole="">9</Val>
+  </Data>
+  <Data ItemRow="8" VarNameRole="KI8.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入9" StepRole="" DataTypeRole="">开入9</Val>
+  </Data>
+  <Data ItemRow="8" VarNameRole="KI8.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="9" VarNameRole="KI9.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="10" StepRole="" DataTypeRole="">10</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="KI9.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入10" StepRole="" DataTypeRole="">开入10</Val>
+  </Data>
+  <Data ItemRow="9" VarNameRole="KI9.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="10" VarNameRole="KI10.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="11" StepRole="" DataTypeRole="">11</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="KI10.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入11" StepRole="" DataTypeRole="">开入11</Val>
+  </Data>
+  <Data ItemRow="10" VarNameRole="KI10.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="11" VarNameRole="KI11.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="12" StepRole="" DataTypeRole="">12</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="KI11.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入12" StepRole="" DataTypeRole="">开入12</Val>
+  </Data>
+  <Data ItemRow="11" VarNameRole="KI11.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="12" VarNameRole="KI12.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="13" StepRole="" DataTypeRole="">13</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="KI12.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入13" StepRole="" DataTypeRole="">开入13</Val>
+  </Data>
+  <Data ItemRow="12" VarNameRole="KI12.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="13" VarNameRole="KI13.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="14" StepRole="" DataTypeRole="">14</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="KI13.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入14" StepRole="" DataTypeRole="">开入14</Val>
+  </Data>
+  <Data ItemRow="13" VarNameRole="KI13.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="14" VarNameRole="KI14.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="15" StepRole="" DataTypeRole="">15</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="KI14.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入15" StepRole="" DataTypeRole="">开入15</Val>
+  </Data>
+  <Data ItemRow="14" VarNameRole="KI14.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="15" VarNameRole="KI15.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="16" StepRole="" DataTypeRole="">16</Val>
+  </Data>
+  <Data ItemRow="15" VarNameRole="KI15.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入16" StepRole="" DataTypeRole="">开入16</Val>
+  </Data>
+  <Data ItemRow="15" VarNameRole="KI15.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="16" VarNameRole="KI16.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="17" StepRole="" DataTypeRole="">17</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="KI16.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入17" StepRole="" DataTypeRole="">开入17</Val>
+  </Data>
+  <Data ItemRow="16" VarNameRole="KI16.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="17" VarNameRole="KI17.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="18" StepRole="" DataTypeRole="">18</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="KI17.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入18" StepRole="" DataTypeRole="">开入18</Val>
+  </Data>
+  <Data ItemRow="17" VarNameRole="KI17.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="18" VarNameRole="KI18.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="19" StepRole="" DataTypeRole="">19</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="KI18.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入19" StepRole="" DataTypeRole="">开入19</Val>
+  </Data>
+  <Data ItemRow="18" VarNameRole="KI18.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="19" VarNameRole="KI19.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="20" StepRole="" DataTypeRole="">20</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="KI19.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入20" StepRole="" DataTypeRole="">开入20</Val>
+  </Data>
+  <Data ItemRow="19" VarNameRole="KI19.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="20" VarNameRole="KI20.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="21" StepRole="" DataTypeRole="">21</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="KI20.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入21" StepRole="" DataTypeRole="">开入21</Val>
+  </Data>
+  <Data ItemRow="20" VarNameRole="KI20.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="21" VarNameRole="KI21.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="22" StepRole="" DataTypeRole="">22</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="KI21.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入22" StepRole="" DataTypeRole="">开入22</Val>
+  </Data>
+  <Data ItemRow="21" VarNameRole="KI21.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="22" VarNameRole="KI22.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="23" StepRole="" DataTypeRole="">23</Val>
+  </Data>
+  <Data ItemRow="22" VarNameRole="KI22.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入23" StepRole="" DataTypeRole="">开入23</Val>
+  </Data>
+  <Data ItemRow="22" VarNameRole="KI22.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="23" VarNameRole="KI23.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="24" StepRole="" DataTypeRole="">24</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="KI23.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入24" StepRole="" DataTypeRole="">开入24</Val>
+  </Data>
+  <Data ItemRow="23" VarNameRole="KI23.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="24" VarNameRole="KI24.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="25" StepRole="" DataTypeRole="">25</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="KI24.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入25" StepRole="" DataTypeRole="">开入25</Val>
+  </Data>
+  <Data ItemRow="24" VarNameRole="KI24.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="25" VarNameRole="KI25.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="26" StepRole="" DataTypeRole="">26</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="KI25.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入26" StepRole="" DataTypeRole="">开入26</Val>
+  </Data>
+  <Data ItemRow="25" VarNameRole="KI25.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="26" VarNameRole="KI26.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="27" StepRole="" DataTypeRole="">27</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="KI26.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入27" StepRole="" DataTypeRole="">开入27</Val>
+  </Data>
+  <Data ItemRow="26" VarNameRole="KI26.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="27" VarNameRole="KI27.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="28" StepRole="" DataTypeRole="">28</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="KI27.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入28" StepRole="" DataTypeRole="">开入28</Val>
+  </Data>
+  <Data ItemRow="27" VarNameRole="KI27.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="28" VarNameRole="KI28.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="29" StepRole="" DataTypeRole="">29</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="KI28.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入29" StepRole="" DataTypeRole="">开入29</Val>
+  </Data>
+  <Data ItemRow="28" VarNameRole="KI28.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="29" VarNameRole="KI29.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="30" StepRole="" DataTypeRole="">30</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="KI29.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入30" StepRole="" DataTypeRole="">开入30</Val>
+  </Data>
+  <Data ItemRow="29" VarNameRole="KI29.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="30" VarNameRole="KI30.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="31" StepRole="" DataTypeRole="">31</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="KI30.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入31" StepRole="" DataTypeRole="">开入31</Val>
+  </Data>
+  <Data ItemRow="30" VarNameRole="KI30.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+  <Data ItemRow="31" VarNameRole="KI31.index" ItemCol="0">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="false" CheckTypeRole="String" EditTypeRole="DefaultEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="32" StepRole="" DataTypeRole="">32</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="KI31.Name" ItemCol="1">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="LineEdit" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="开入32" StepRole="" DataTypeRole="">开入32</Val>
+  </Data>
+  <Data ItemRow="31" VarNameRole="KI31.off_on" ItemCol="2">
+   <Interface DescRole="" RegexpRole="" ContentRole="" Editable="true" CheckTypeRole="String" EditTypeRole="ComboBox" ShowTypeRole="DefaultShow" NameRole=""/>
+   <Val RangMinRole="" DecimalRole="" RangMaxRole="" UnitRole="" DefaultValRole="true" StepRole="" DataTypeRole="">true</Val>
+   <Combo InterfaceName="投入">true</Combo>
+   <Combo InterfaceName="退出">false</Combo>
+  </Data>
+ </Model>
+</DataBase>

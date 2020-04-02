@@ -1,0 +1,13 @@
+INPUT(
+./release\inputcontext.o
+./release\platforminputcontextplugin.o
+./release\googlepinyin.o
+./release\keyboardform.o
+./release\keyeventdispatcher.o
+./release\qrc_res.o
+./release\moc_inputcontext.o
+./release\moc_platforminputcontextplugin.o
+./release\moc_googlepinyin.o
+./release\moc_keyboardform.o
+./release\moc_keyeventdispatcher.o
+);

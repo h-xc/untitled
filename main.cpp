@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
-
 int main(int argc, char *argv[])
 {
+    qputenv("QT_IM_MODULE", "none");
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

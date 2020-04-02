@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>keyboard.css</file>
-    </qresource>
-</RCC>

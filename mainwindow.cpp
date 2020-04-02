@@ -29,3 +29,5 @@ void MainWindow::on_LayoutTest_clicked()
     widget->setAttribute(Qt::WA_DeleteOnClose);
     widget->show();
 }
+
+

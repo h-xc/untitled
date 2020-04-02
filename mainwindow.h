@@ -20,6 +20,8 @@ private slots:
 
     void on_LayoutTest_clicked();
 
+
+
 private:
     Ui::MainWindow *ui;
 };
