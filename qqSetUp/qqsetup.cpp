@@ -15,6 +15,7 @@ qqSetUp::qqSetUp(QWidget *parent) :
     ui(new Ui::qqSetUp)
 {
     ui->setupUi(this);
+
     dataStore =new xmlDataStore(parent);
     dataStore->xmlFileName =XML_FILE_NAME;
     dataStore->fetchOfStore();

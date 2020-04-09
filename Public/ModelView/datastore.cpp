@@ -119,7 +119,7 @@ QStandardItem * DataStore::initItem(QString VarName,
 
 void DataStore::CleanModels()
 {
-    for(int pos;pos<m_Models.count();pos++)
+    for(int pos = 0;pos<m_Models.count();pos++)
     {
         delete m_Models[pos]->model;
     }

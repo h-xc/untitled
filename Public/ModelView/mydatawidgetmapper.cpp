@@ -585,6 +585,7 @@ QByteArray mydataWidgetMapper::mappedPropertyName(QWidget *widget) const
     //            return m.widget->metaObject()->userProperty().name();
     //        else
     //            return m.property;
+    return QByteArray();
 }
 
 /*!

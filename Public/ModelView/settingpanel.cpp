@@ -18,7 +18,7 @@
 #include <QSpacerItem>
 #include <QHeaderView>
 
-#include <QHeaderView>
+#include <QScroller>
 
 #include "item_delegate.h"
 
@@ -29,37 +29,57 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , scrollArea(NULL)
   , Y_endPos(0)
   , ItemClickedFlag(false)
+  , m_Models(NULL)
 {
     QFile file(CSS_FILE);
+    QString styleSheet;
     if (file.open(QFile::ReadOnly))  // 加载样式表
     {
-        QString styleSheet = file.readAll();
+        styleSheet = file.readAll();
         file.close();
-        if(!styleSheet.isEmpty())
-        {
-            this->setStyleSheet(styleSheet);//把文件内容传参 }
-        }
+
+    }
+    else
+    {
+        styleSheet =
+                "QListWidget{width:150px;background:rgba(240,240,240,255);border:0px solid gray;padding:0px;}"
+                "QListWidget::item{width:100px;height:35px;border:0px solid gray;padding-left:20px;}"
+                "QListWidget::item:selected{background:#FFFFFF;}"
+
+                "QScrollArea{background:#FFFFFF;}"
+                "QWidget#widgetScrollArea{background-color:#FFFFFF;border-color:#FFFFFF;}";
     }
 
+    if(!styleSheet.isEmpty())
+    {
+        this->setStyleSheet(styleSheet);//把文件内容传参 }
+    }
     /*目录列表初始化*/
     contentsWidget = new QListWidget(this);
     contentsWidget->setFocusPolicy(Qt::NoFocus);
+    contentsWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    contentsWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    contentsWidget->setVerticalScrollMode(QListWidget::ScrollPerPixel);//设置为像素滚动
+    QScroller::grabGesture(contentsWidget,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
+
     connect(contentsWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(slotItemClicked(QListWidgetItem*)));
 
     /*滚动窗口初始化*/
     scrollArea = new QScrollArea(this);
+    widgetScrollArea = new QWidget();
     scrollArea->setFrameShape(QFrame::NoFrame);
     scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     scrollArea->setFocusPolicy(Qt::ClickFocus);
-    widgetScrollArea = new QWidget(scrollArea);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    QScroller::grabGesture(scrollArea,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
+
+
+    widgetScrollArea->setObjectName(QStringLiteral("widgetScrollArea"));
     scrollArea->setWidget(widgetScrollArea);
 
-    // 滚动窗口滚动事件
+     // 滚动窗口滚动事件
     connect(scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int))); // 滚动事件
-
-    //
-
 }
 
 SettingPanel::~SettingPanel()
@@ -77,7 +97,8 @@ void SettingPanel::setModles(QList<ModelStruct *> *Models)
     if(m_Models != NULL)
     {
         clear();     // 清空当前的界面
-        widgetScrollArea = new QWidget(scrollArea);   // 重新创建窗口类
+        widgetScrollArea = new QWidget();   // 重新创建窗口类
+        widgetScrollArea->setObjectName(QStringLiteral("widgetScrollArea"));
         scrollArea->setWidget(widgetScrollArea);
     }
 
@@ -152,6 +173,11 @@ void SettingPanel::initWidget()
                 }
 
                 QTableView * tableView = new QTableView(widgetScrollArea);
+
+                tableView->setVerticalScrollMode(QListWidget::ScrollPerPixel);//设置为像素滚动
+                QScroller::grabGesture(tableView,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
+                tableView->installEventFilter(this);
+
                 Delegate = new ItemDelegate(widgetScrollArea);
                 tableView->setModel(model);
                 tableView->setItemDelegate(Delegate);
@@ -294,36 +320,22 @@ void SettingPanel::slotValueChanged(int value)
     }
 }
 
-void SettingPanel::mouseMoveEvent(QMouseEvent *e)
+bool SettingPanel::eventFilter(QObject *obj, QEvent *eve)
 {
-    if (!m_bMousePressed)
+    if(obj->metaObject()->className() == QTableView::staticMetaObject.className())
     {
-        return;
+
+        if(eve->type() == QEvent::Enter)
+        {
+            QScroller::ungrabGesture(scrollArea);//设置鼠标左键拖动
+        }
+        else if(eve->type() == QEvent::Leave)
+        {
+            QScroller::grabGesture(scrollArea,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
+        }
     }
-
-    QPoint currentPt = e->pos();
-
-    int dist = m_PressPosition.y() - currentPt.y();
-
-    scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + dist);
-
-    m_PressPosition = currentPt;
+   return QWidget::eventFilter(obj,eve);
 }
 
-void SettingPanel::mousePressEvent(QMouseEvent *e)
-{
-    m_bMousePressed = true;
-
-    m_PressPosition = e->pos();
-}
-
-void SettingPanel::mouseReleaseEvent(QMouseEvent *e)
-{
-    Q_UNUSED(e);
-    m_bMousePressed = false;
-
-    m_PressPosition.setX(0);
-    m_PressPosition.setY(0);
-}
 
 

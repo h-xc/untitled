@@ -13,10 +13,10 @@
 #define CSS_FILE  "./SettingPanel.css"
 
 #define CONTENTS_TOP    0      // 目录窗口头位置（LEFT为0）
-#define CONTENTS_WIDTH  130    // 目录窗口宽度
+#define CONTENTS_WIDTH  150    // 目录窗口宽度
 
 #define SCROLL_TOP      CONTENTS_TOP + 1      // 滚动窗口头位置 比目录窗口低一个像素
-#define SCROLL_LEFT     CONTENTS_WIDTH + 1    // 滚动窗口左边开始位置，
+#define SCROLL_LEFT     CONTENTS_WIDTH        // 滚动窗口左边开始位置，
 #define SCROLL_WIDGET_WIDTH    500            // 滚动窗口宽度
 
 #define Y_START_POS     10                    // 定值控件y开始位置
@@ -54,13 +54,6 @@ private slots:
     void slotItemClicked(QListWidgetItem *item);
     void slotValueChanged(int value);
 
-    //实现鼠标拖动功能
-    void mouseMoveEvent(QMouseEvent *e);     // 鼠标移动
-    void mousePressEvent(QMouseEvent *e);    // 鼠标按下
-    void mouseReleaseEvent(QMouseEvent *e);  // 鼠标弹起
-
-
-
 private:
     QListWidget *contentsWidget;
     QWidget     *widgetScrollArea;
@@ -68,7 +61,9 @@ private:
     int    Y_endPos;
     bool   ItemClickedFlag;   //标记是否点击了目录导航 false 无操作  true 正在操作
 
+    bool eventFilter(QObject *, QEvent *);  //事件过滤器
     //实现鼠标拖动功能
+    QObject         *m_Sender;
     bool            m_bMousePressed;
     QPoint          m_PressPosition;
 
