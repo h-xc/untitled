@@ -7,6 +7,7 @@
 #include <QScrollArea>
 #include <QPushButton>
 #include <QStandardItemModel>
+#include <QGridLayout>
 #include "mydatawidgetmapper.h"
 #include "datastore.h"
 #include "mylineedit.h"
@@ -41,10 +42,8 @@ public:
     void clear();
 
 protected:
-    void  resizeEvent(QResizeEvent *event);
-    void  addContent(int ax, int ay,QString label);
+    void  addContent(int &GridRow,QString label);
     const  QList<ModelStruct *>   *m_Models;
-
 
 private:
     void initWidget();
@@ -56,17 +55,16 @@ private slots:
 
 private:
     QListWidget *contentsWidget;
-    QWidget     *widgetScrollArea;
     QScrollArea *scrollArea;
-    int    Y_endPos;
-    bool   ItemClickedFlag;   //标记是否点击了目录导航 false 无操作  true 正在操作
 
-    bool eventFilter(QObject *, QEvent *);  //事件过滤器
-    //实现鼠标拖动功能
-    QObject         *m_Sender;
-    bool            m_bMousePressed;
-    QPoint          m_PressPosition;
+    QWidget     *scrollAreaWidgetContents;
+    QGridLayout *gridLayout;
 
+    bool   contentsItemClicked;   //标记是否点击了目录导航 false 无操作  true 正在操作
+    QSpacerItem *vSpacer;
+
+    bool eventFilter(QObject *, QEvent *);  //事件过滤器，当滑动表格时，先屏蔽窗口的滑动事件
+    void resizeEvent(QResizeEvent* size);
 };
 
 #endif // SETTINGPANEL_H

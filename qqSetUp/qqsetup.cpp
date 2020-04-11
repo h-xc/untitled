@@ -21,10 +21,10 @@ qqSetUp::qqSetUp(QWidget *parent) :
     dataStore->fetchOfStore();
 
     ui->widget->setModles(&dataStore->m_Models);
-    ui->faultSetModelView->setModel(dataStore->m_Models[0]->model);
-    ui->lineSetModelView->setModel(dataStore->m_Models[1]->model);
-    ui->KISetModelView->setModel(dataStore->m_Models[2]->model);
-    ui->KOSetModelView->setModel(dataStore->m_Models[3]->model);
+//    ui->faultSetModelView->setModel(dataStore->m_Models[0]->model);
+//    ui->lineSetModelView->setModel(dataStore->m_Models[1]->model);
+//    ui->KISetModelView->setModel(dataStore->m_Models[2]->model);
+//    ui->KOSetModelView->setModel(dataStore->m_Models[3]->model);
 }
 
 qqSetUp::~qqSetUp()

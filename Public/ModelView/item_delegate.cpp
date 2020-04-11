@@ -201,7 +201,6 @@ bool ItemDelegate::initEditor(QWidget *editor,const QModelIndex &index)
         {
             int lenMin = 0;
             int lenMax = ITEM_TYPE_STRING_MAXLEN;  // 默认上限
-            QString str = index.data(VarNameRole).toString();
             // 字符个数下限
             if(index.data(RangMinRole).isValid())
             {
