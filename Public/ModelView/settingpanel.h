@@ -13,24 +13,8 @@
 #include "mylineedit.h"
 #define CSS_FILE  "./SettingPanel.css"
 
-#define CONTENTS_TOP    0      // 目录窗口头位置（LEFT为0）
-#define CONTENTS_WIDTH  150    // 目录窗口宽度
-
-#define SCROLL_TOP      CONTENTS_TOP + 1      // 滚动窗口头位置 比目录窗口低一个像素
-#define SCROLL_LEFT     CONTENTS_WIDTH        // 滚动窗口左边开始位置，
-#define SCROLL_WIDGET_WIDTH    500            // 滚动窗口宽度
-
-#define Y_START_POS     10                    // 定值控件y开始位置
-#define Y_SPACE         40                    // 定值控件y偏移位置
-
-#define X_START_POS     30
-#define X_SPACE         250
-
-
-#define NAME_LABEL_WIDTH 100                 // 定值名称宽度
-#define EDIT_WIDTH  70                       // 编辑器宽度
-
-
+#define  NAME_COL(col)   (col*3+1)
+#define  EDIT_COL(col)   (col*3+2)
 
 class SettingPanel : public QWidget
 {

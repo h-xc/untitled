@@ -49,11 +49,12 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
                 "QListWidget::item{width:100px;height:35px;border:0px solid gray;padding-left:20px;}"
                 "QListWidget::item:selected{background:#FFFFFF;}"
 
-                //"QScrollArea{background:#eeeeee;}"
                 "QWidget#scrollAreaWidgetContents{background-color:#FFFFFF;}"
 
-                "QLabel[contentsLabel=\"true\"]{background:#8DB1E2;min-height:30px;margin-top:10px;font-weight: bold;}"
-                /*"QLabel{background:#8DB1E2;font-weight: bold;}"*/;
+                "QWidget[Content=\"Content\"]{background:#8DB1E2;min-height:30px;margin-top:10px;font-weight: bold;}"
+                "QWidget[Name=\"Name\"]{min-width:100px;}"
+                "QWidget[Edit=\"Edit\"]{max-width:70px;}"
+                ;
     }
 
     if(!styleSheet.isEmpty())
@@ -90,8 +91,9 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     horizontalLayout->addWidget(scrollArea);    // 添加到布局类
 
     scrollAreaWidgetContents = new QWidget();  // 创建滚动区窗口类
-    scrollArea->setWidget(scrollAreaWidgetContents); //将滚动区窗口类与滚动窗口类关联
     scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));// 使用id选择器设置样式，方便样式表进行背景色设置，且不会影响小控件继承
+
+    scrollArea->setWidget(scrollAreaWidgetContents); //将滚动区窗口类与滚动窗口类关联
     scrollAreaWidgetContents->installEventFilter(this); // 注册事件过滤器，
 
     gridLayout = new QGridLayout(scrollAreaWidgetContents);// 设置滚动区为网格布局
@@ -119,7 +121,7 @@ void SettingPanel::setModles(QList<ModelStruct *> *Models)
     {
         clear();     // 清空当前的界面
         scrollAreaWidgetContents = new QWidget();   // 重新创建窗口类
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("widgetScrollArea")); // 使用id选择器设置样式，这样不会被子控件继承
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents")); // 使用id选择器设置样式，这样不会被子控件继承
         scrollArea->setWidget(scrollAreaWidgetContents);
     }
 
@@ -141,7 +143,7 @@ void   SettingPanel::addContent(int &GridRow,QString label)
 {
     /*添加目录标签*/
     QLabel *contentsLabel = new QLabel(scrollAreaWidgetContents);
-    contentsLabel->setProperty("contentsLabel",true);  // 设置属性，用于样式表进行背景色设置
+    contentsLabel->setProperty("Content","Content");  // 设置属性，用于样式表进行背景色设置
     contentsLabel->setText(label);
     gridLayout->addWidget(contentsLabel,GridRow,0,1,-1);
 
@@ -178,7 +180,7 @@ void SettingPanel::initWidget()
                 }
 
                 QTableView * tableView = new QTableView(scrollAreaWidgetContents);
-
+                tableView->setEditTriggers(QAbstractItemView::AllEditTriggers);// 单击直接编辑
                 tableView->setVerticalScrollMode(QListWidget::ScrollPerPixel);//设置为像素滚动
 
                 QScroller::grabGesture(tableView,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
@@ -200,7 +202,7 @@ void SettingPanel::initWidget()
                 QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
                 tableView->setSizePolicy(sizePolicy1);
 
-                gridLayout->addWidget(tableView,GridRow,0,1,gridLayout->columnCount());
+                gridLayout->addWidget(tableView,GridRow,1,1,gridLayout->columnCount()-1);
                 GridRow ++;
             }
             /*小控件视图*/
@@ -238,15 +240,16 @@ void SettingPanel::initWidget()
                             dataWidgetMapper->addMapping(checkBox,row,col); // 与模型对应位置绑定
                             checkBox->setText(model->index(row,col).data(ItemDelegate::NameRole).toString());
                             checkBox->adjustSize();
-                            gridLayout->addWidget(checkBox,GridRow,col*3,1,2);
+                            gridLayout->addWidget(checkBox,GridRow,NAME_COL(col),1,2);
                         }
                         /*定值数据的名称*/
                         else if(model->index(row,col).data(ItemDelegate::NameRole).isValid()) // CheckBox自带描述，不用添加
                         {
                             NameLabel = new QLabel(scrollAreaWidgetContents);
+                            NameLabel->setProperty("Name","Name");  // 设置属性，用于样式表进行背景色设置
                             NameLabel->setText(model->index(row,col).data(ItemDelegate::NameRole).toString());
                             NameLabel->adjustSize();
-                            gridLayout->addWidget(NameLabel,GridRow,col*3,1,1);
+                            gridLayout->addWidget(NameLabel,GridRow,NAME_COL(col),1,1);
                         }
 
                         /*定值数据的编辑器*/
@@ -269,10 +272,10 @@ void SettingPanel::initWidget()
                         /*编辑器与模型绑定，并设置大小和位置*/
                         if(ValWidget != NULL)
                         {
+                            ValWidget->setProperty("Edit","Edit");  // 设置属性，用于样式表进行背景色设置
                             dataWidgetMapper->addMapping(ValWidget,row,col); // 与模型对应位置绑定
                             ValWidget->adjustSize();
-                            gridLayout->addWidget(ValWidget,GridRow,col*3+1,1,1);
-                            ValWidget->setMaximumSize(QSize(EDIT_WIDTH, 16777215));
+                            gridLayout->addWidget(ValWidget,GridRow,EDIT_COL(col),1,1);
                         }
                     }
                 }
@@ -280,8 +283,9 @@ void SettingPanel::initWidget()
             }
         }
     }
+
     // 每一组（名称加编辑框）小控件后面添加一个弹簧控件，用于伸缩
-    for(int hSpacerCol = 2;hSpacerCol < gridLayout->columnCount()+1;hSpacerCol+=3)
+    for(int hSpacerCol = 0;hSpacerCol < gridLayout->columnCount()+1; hSpacerCol += 3)
     {
         QSpacerItem *hSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
         gridLayout->addItem(hSpacer, 1, hSpacerCol, 1, 1);
