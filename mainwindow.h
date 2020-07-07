@@ -22,6 +22,8 @@ private slots:
 
 
 
+    void on_sysSet_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

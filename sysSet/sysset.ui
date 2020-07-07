@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LayoutTest</class>
- <widget class="QWidget" name="LayoutTest">
+ <class>sysSet</class>
+ <widget class="QWidget" name="sysSet">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>828</width>
-    <height>680</height>
+    <width>824</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="widgetResizable">
@@ -23,8 +23,8 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
-        <width>783</width>
+        <y>-644</y>
+        <width>779</width>
         <height>1324</height>
        </rect>
       </property>
@@ -557,7 +557,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>动作</string>
+            <string>执行</string>
            </property>
           </widget>
          </item>
@@ -620,7 +620,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>动作</string>
+            <string>执行</string>
            </property>
           </widget>
          </item>
@@ -666,7 +666,7 @@
                <enum>Qt::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>确定</string>
+               <string>执行</string>
               </property>
               <property name="checkable">
                <bool>false</bool>
@@ -707,7 +707,7 @@
                <enum>Qt::LeftToRight</enum>
               </property>
               <property name="text">
-               <string>确定</string>
+               <string>执行</string>
               </property>
               <property name="checkable">
                <bool>false</bool>

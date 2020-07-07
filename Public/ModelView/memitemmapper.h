@@ -47,7 +47,7 @@ template<typename T>
 MemItemMapper<T>::MemItemMapper(T *memVal)
 {
     m_val       = memVal;
-    QStandardItem::setData(qMetaTypeId<T>(),ItemDelegate::DataTypeRole);  // 标记数据类型
+    //QStandardItem::setData(qMetaTypeId<T>(),ItemDelegate::DataTypeRole);  // 标记数据类型
     QStandardItem::setData(QVariant::fromValue<T>(*memVal),Qt::EditRole); // 模型中数据
 }
 

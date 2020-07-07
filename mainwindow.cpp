@@ -3,6 +3,7 @@
 
 #include "./qqSetUp/qqsetup.h"
 #include "./LayoutTest/layouttest.h"
+#include "./sysSet/sysset.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,4 +31,9 @@ void MainWindow::on_LayoutTest_clicked()
     widget->show();
 }
 
-
+void MainWindow::on_sysSet_clicked()
+{
+    sysSet *widget = new sysSet;
+    widget->setAttribute(Qt::WA_DeleteOnClose);
+    widget->show();
+}

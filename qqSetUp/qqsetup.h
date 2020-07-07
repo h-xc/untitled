@@ -10,6 +10,33 @@
 namespace Ui {
 class qqSetUp;
 }
+struct BIT
+{
+    quint32 NeutralGndMode:1;
+};
+
+
+struct Mystruct
+{
+    char DevName[32];
+    qint8 NeutralGndMode;
+    qint32 OffsetU0Max;
+    qint32 val1;
+};
+
+
+class Myclass: public QObject
+{
+   Q_OBJECT
+public:
+    Myclass(QObject*parent = 0 ):
+        QObject(parent){}
+    ~Myclass(){}
+
+   int val1;
+   Q_PROPERTY(int val1 MEMBER val1)
+
+};
 
 class qqSetUp : public QWidget
 {
@@ -21,7 +48,20 @@ public:
     xmlDataStore *dataStore;
 private:
     Ui::qqSetUp *ui;
+
+    Mystruct mstruct;
+
+    Q_PROPERTY(int val1 READ hasVal1 WRITE setVal1 NOTIFY valChanged)
+    int hasVal1(){return mstruct.val1;}
+    void setVal1(int val1){mstruct.val1 = val1;}
+
+signals:
+    void valChanged();
 public slots:
+    void valSlot()
+    {
+        qDebug() << "valSlot:";
+    }
 
 };
 

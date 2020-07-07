@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui xml  network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +38,8 @@ SOURCES += \
         mainwindow.cpp \
         qqSetUp/qqsetup.cpp \
     LayoutTest/layouttest.cpp \
-    Public/ModelView/xmldatastore.cpp
+    Public/ModelView/xmldatastore.cpp \
+    sysSet/sysset.cpp
 
 HEADERS += \
         Public/ModelView/datastore.h \
@@ -52,12 +53,14 @@ HEADERS += \
         mainwindow.h \
         qqSetUp/qqsetup.h \
     LayoutTest/layouttest.h \
-    Public/ModelView/xmldatastore.h
+    Public/ModelView/xmldatastore.h \
+    sysSet/sysset.h
 
 FORMS += \
         mainwindow.ui \
         qqSetUp/qqsetup.ui \
-    LayoutTest/layouttest.ui
+    LayoutTest/layouttest.ui \
+    sysSet/sysset.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

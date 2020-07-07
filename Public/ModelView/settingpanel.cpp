@@ -19,7 +19,7 @@
 #include <QHeaderView>
 #include <QHBoxLayout>
 #include <QScroller>
-
+#include <QSpinBox>
 #include <QSpacerItem>
 #include "item_delegate.h"
 
@@ -31,8 +31,6 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
   , scrollAreaWidgetContents(NULL)
   , gridLayout(NULL)
   , contentsItemClicked(false)
-  , vSpacer(NULL)
-
 {
     QFile file(CSS_FILE);
     QString styleSheet;
@@ -40,7 +38,6 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     {
         styleSheet = file.readAll();
         file.close();
-
     }
     else
     {
@@ -51,9 +48,11 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
 
                 "QWidget#scrollAreaWidgetContents{background-color:#FFFFFF;}"
 
-                "QWidget[Content=\"Content\"]{background:#8DB1E2;min-height:30px;margin-top:10px;font-weight: bold;}"
+                "QWidget[Content=\"Content\"]{background:#8DB1E2;min-height:30px;margin-top:10px;}"
                 "QWidget[Name=\"Name\"]{min-width:100px;}"
                 "QWidget[Edit=\"Edit\"]{max-width:70px;}"
+
+                "QWidget[isChanged=\"true\"]{color:red;}"
                 ;
     }
 
@@ -73,36 +72,42 @@ SettingPanel::SettingPanel(QWidget *parent) : QWidget(parent)
     contentsWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);// 禁止垂直滚动条
     contentsWidget->setVerticalScrollMode(QListWidget::ScrollPerPixel);//设置为像素滚动 这样在滚动的时候就不会跳动
     // 增加滚动效果，并设置鼠标左键拖动
-    QScroller::grabGesture(contentsWidget,QScroller::LeftMouseButtonGesture);
-    // 响应目录鼠标点击信号，用于滚动区定值目录定位
+    QScroller::grabGesture(contentsWidget->viewport(),QScroller::LeftMouseButtonGesture);
+
+    // 响应目录鼠标点击信号，用于滚动区定值目录标签定位
     connect(contentsWidget, SIGNAL(itemClicked(QListWidgetItem*)),
             this, SLOT(slotItemClicked(QListWidgetItem*)));
     horizontalLayout->addWidget(contentsWidget);  // 添加到布局类
 
     /*2、滚动窗口初始化*/
     scrollArea = new QScrollArea(this);
-    scrollAreaWidgetContents = new QWidget();  // 滚动区窗口类
+    scrollAreaWidgetContents = new QWidget();   // 滚动区窗口类
     scrollArea->setFrameShape(QFrame::NoFrame); // 无窗口外框
     scrollArea->setFocusPolicy(Qt::ClickFocus); // 鼠标点击可获取焦距，用于修改定值后点击其它地方，可立即消除编辑框的焦距
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);// 禁止水平滚动条
     scrollArea->setWidgetResizable(true);// 设置滚动区自动根据小控件进行大小调整
     // 增加滚动效果，并设置鼠标左键拖动
-    QScroller::grabGesture(scrollArea,QScroller::LeftMouseButtonGesture);
+    QScroller::grabGesture(scrollArea->viewport(),QScroller::LeftMouseButtonGesture);
+//    QScroller *scroller = QScroller::scroller(scrollArea->viewport());
+//    QScrollerProperties  scrollerProperties = scroller->scrollerProperties();
+//    scrollerProperties.setScrollMetric(QScrollerProperties::HorizontalOvershootPolicy,QScrollerProperties::OvershootAlwaysOff);
+//    scroller->setScrollerProperties(scrollerProperties);
+
     horizontalLayout->addWidget(scrollArea);    // 添加到布局类
 
-    scrollAreaWidgetContents = new QWidget();  // 创建滚动区窗口类
+    scrollAreaWidgetContents = new QWidget();   // 创建滚动区窗口类
     scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));// 使用id选择器设置样式，方便样式表进行背景色设置，且不会影响小控件继承
 
-    scrollArea->setWidget(scrollAreaWidgetContents); //将滚动区窗口类与滚动窗口类关联
+    scrollArea->setWidget(scrollAreaWidgetContents);    //将滚动区窗口类与滚动窗口类关联
     scrollAreaWidgetContents->installEventFilter(this); // 注册事件过滤器，
 
-    gridLayout = new QGridLayout(scrollAreaWidgetContents);// 设置滚动区为网格布局
+    gridLayout = new QGridLayout(scrollAreaWidgetContents); // 设置滚动区为网格布局
     gridLayout->setObjectName(QStringLiteral("gridLayout"));//
     // 滚动窗口滚动事件，用于同步更新目录导航的位置
     connect(scrollArea->verticalScrollBar(), SIGNAL(valueChanged(int)), this, SLOT(slotValueChanged(int))); // 滚动事件
 
     horizontalLayout->setStretch(0, 1);  // 设置拉伸系数，需要放在最后面
-    horizontalLayout->setStretch(1, 4);  // 设置拉伸系数，需要放在才生效最后面
+    horizontalLayout->setStretch(1, 6);  // 设置拉伸系数，需要放在最后面才生效
 }
 
 SettingPanel::~SettingPanel()
@@ -166,35 +171,36 @@ void SettingPanel::initWidget()
             QStandardItemModel *model = (QStandardItemModel *)m_Models->at(listPos)->model;
             if(model == NULL)continue;
 
-            if(!m_Models->at(listPos)->Content.isEmpty())// 如果有定义目录标签
+            if(!m_Models->at(listPos)->Content.isEmpty()
+                    &&( m_Models->at(listPos)->View == DataStore::Table
+                    || m_Models->at(listPos)->View == DataStore::Control))// 如果有定义目录标签
             {
                 addContent(GridRow,m_Models->at(listPos)->Content);
             }
 
             /*表格视图*/
-            if(m_Models->at(listPos)->View == "Table")
+            if(m_Models->at(listPos)->View == DataStore::Table)
             {
-                if(m_Models->at(listPos)->Content.isEmpty())// 若没有定义目录标签
-                {
-                    addContent(GridRow,m_Models->at(listPos)->Name);// 表格直接以模型的名称做目录标签
-                }
-
                 QTableView * tableView = new QTableView(scrollAreaWidgetContents);
                 tableView->setEditTriggers(QAbstractItemView::AllEditTriggers);// 单击直接编辑
                 tableView->setVerticalScrollMode(QListWidget::ScrollPerPixel);//设置为像素滚动
+                tableView->setHorizontalScrollMode(QListWidget::ScrollPerPixel);//设置为像素滚动
+                QScroller::grabGesture(tableView->viewport(),QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
 
-                QScroller::grabGesture(tableView,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
+                /*消除拖动的过冲效果*/
+                QScroller *scroller = QScroller::scroller(tableView->viewport());
+                QScrollerProperties  scrollerProperties = scroller->scrollerProperties();
+                scrollerProperties.setScrollMetric(QScrollerProperties::HorizontalOvershootPolicy,
+                                                   QVariant::fromValue<QScrollerProperties::OvershootPolicy>(QScrollerProperties::OvershootAlwaysOff));
+                scroller->setScrollerProperties(scrollerProperties);
+
                 tableView->installEventFilter(this); // 注册事件管理器，用于滚动区拖动的冲突处理
 
                 Delegate = new ItemDelegate(scrollAreaWidgetContents);
                 tableView->setModel(model);
                 tableView->setItemDelegate(Delegate);
 
-#if (QT_VERSION <= QT_VERSION_CHECK(5,0,0))  // 目前需要适应QT5和QT4版本，
-                tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-#else
-                tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-#endif
+                tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
                 // 设置表格为5行数据的高低
                 tableView->setMinimumSize(QSize(0, tableView->horizontalHeader()->height()+tableView->rowHeight(0)*5));
 
@@ -206,7 +212,7 @@ void SettingPanel::initWidget()
                 GridRow ++;
             }
             /*小控件视图*/
-            else if(m_Models->at(listPos)->View == "Control")
+            else if(m_Models->at(listPos)->View == DataStore::Control)
             {
                 dataWidgetMapper = new mydataWidgetMapper(scrollAreaWidgetContents);//映射类 将控件与模型关联起来
                 Delegate = new ItemDelegate(scrollAreaWidgetContents); // 委托类 实现控件与模型的数据关联
@@ -230,6 +236,7 @@ void SettingPanel::initWidget()
                         // 模型项中包含目录标签角色则添加标签
                         if(model->index(row,col).data(ItemDelegate::ContentRole).isValid())
                         {
+                            if(col!=0)GridRow++; // 强制换行
                             addContent(GridRow,model->index(row,col).data(ItemDelegate::ContentRole).toString());// 表格直接以模型的名称做目录标签
                         }
 
@@ -249,6 +256,7 @@ void SettingPanel::initWidget()
                             NameLabel->setProperty("Name","Name");  // 设置属性，用于样式表进行背景色设置
                             NameLabel->setText(model->index(row,col).data(ItemDelegate::NameRole).toString());
                             NameLabel->adjustSize();
+                            NameLabel->setMinimumWidth(NameLabel->width());
                             gridLayout->addWidget(NameLabel,GridRow,NAME_COL(col),1,1);
                         }
 
@@ -262,6 +270,16 @@ void SettingPanel::initWidget()
                         {
                             QLineEdit *lineEdit = new MyLineEdit(scrollAreaWidgetContents);
                             ValWidget = lineEdit;
+                        }
+                        else if(model->index(row,col).data(ItemDelegate::EditTypeRole).toInt() == ItemDelegate::SpinBox)
+                        {
+                            QAbstractSpinBox *spinBox = NULL;
+                            if(model->index(row,col).data(ItemDelegate::CheckTypeRole).toInt() == ItemDelegate::Float
+                                    || model->index(row,col).data(ItemDelegate::CheckTypeRole).toInt() == ItemDelegate::Int)
+                            {
+                                spinBox = new QDoubleSpinBox(scrollAreaWidgetContents);
+                            }
+                            ValWidget = spinBox;
                         }
                         else
                         {
@@ -284,14 +302,15 @@ void SettingPanel::initWidget()
         }
     }
 
+    QSpacerItem *hSpacer;
     // 每一组（名称加编辑框）小控件后面添加一个弹簧控件，用于伸缩
     for(int hSpacerCol = 0;hSpacerCol < gridLayout->columnCount()+1; hSpacerCol += 3)
     {
-        QSpacerItem *hSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        hSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
         gridLayout->addItem(hSpacer, 1, hSpacerCol, 1, 1);
     }
     // 末尾添加弹簧
-    vSpacer = new QSpacerItem(0,0,QSizePolicy::Minimum, QSizePolicy::Expanding);
+    QSpacerItem *vSpacer = new QSpacerItem(0,0,QSizePolicy::Minimum, QSizePolicy::Expanding);
     gridLayout->addItem(vSpacer,gridLayout->rowCount(),0,1,1);
 }
 
@@ -301,14 +320,14 @@ void SettingPanel::slotItemClicked(QListWidgetItem *item)
     int pos = gridLayout->cellRect(item->data(Qt::UserRole).toInt(),0).top(); // 获取目录在滚动区的位置
 
     // 使用滚动效果，定位到目录标签
-    QScroller *scroller = QScroller::scroller(scrollArea);
+    QScroller *scroller = QScroller::scroller(scrollArea->viewport());
     scroller->scrollTo(QPointF(scrollArea->horizontalScrollBar()->sliderPosition(), pos));
 }
 
 void SettingPanel::slotValueChanged(int value)
 {
     int pos = 0;
-    QScroller *scroller = QScroller::scroller(scrollArea);
+    QScroller *scroller = QScroller::scroller(scrollArea->viewport());
     if(contentsItemClicked )// 若是目录标签进行的位置更行，则不更行目录窗口
     {
         if(scroller->state() == QScroller::Scrolling)// 滚动效果为自滚动，即不是用鼠标滚动的
@@ -336,11 +355,11 @@ bool SettingPanel::eventFilter(QObject *obj, QEvent *eve)
         // 主要是表格与滚动区滚动效果的冲突处理。不然没法滚动表格
         if(eve->type() == QEvent::Enter)
         {
-            QScroller::ungrabGesture(scrollArea);//设置鼠标左键拖动
+            QScroller::ungrabGesture(scrollArea->viewport());//设置鼠标左键拖动
         }
-        else if(eve->type() == QEvent::Leave)
+        else if(eve->type() == QEvent::Leave )
         {
-            QScroller::grabGesture(scrollArea,QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
+            QScroller::grabGesture(scrollArea->viewport(),QScroller::LeftMouseButtonGesture);//设置鼠标左键拖动
         }
     }
     else if(obj == scrollAreaWidgetContents)
@@ -365,14 +384,12 @@ void SettingPanel::resizeEvent(QResizeEvent* size)
                 contentsWidget->item(contentsWidget->count()-1)->data(Qt::UserRole).toInt(),0).top();
 
     if(contentEndPos == 0)return;
-    scrollAreaWidgetContents->setMinimumHeight(0);  // 滚动区窗口先自适应
+    scrollAreaWidgetContents->setMinimumHeight(0);  // 滚动区窗口先自适应大小
 
     // 填充空白到滚动区窗口最尾端，让导航目录可以跳转到滚动区对应的定值标签上
     if(gridLayout->cellRect(gridLayout->rowCount()-1,0).top() - contentEndPos +10 < scrollArea->height())
     {
         scrollAreaWidgetContents->setMinimumHeight(contentEndPos+scrollArea->height());
     }
-
-
 }
 

@@ -23,9 +23,9 @@ hxc      190102 v1.0       创建编写
 
 
 #define ITEM_TYPE_STRING_MAXLEN      10     // 定义字符默认最大长度
-// 网址IP4类型 正则
+// 网址IP4类型 正则 xxx.xxx.xxx.xxx
 #define ITEM_BASE_TYPE_IP4_REGEXP    "((2[0-4]\\d|25[0-5]|[01]?\\d\\d?)\\.){3}(2[0-4]\\d|25[0-5]|[01]?\\d\\d?)"
-// MAC地址类型 正则
+// MAC地址类型 正则 FF:FF:FF:FF:FF:FF
 #define ITEM_BASE_TYPE_MAC_REGEXP    "(([0-9A-F]{2}:){5}[0-9A-F]{2})"
 
 #define ADDR_POS  0
@@ -41,12 +41,14 @@ public:
         ComboBox,                       // 下拉框
         LineEdit,                       // 文本输入框
         CheckBox,                       // 复选框
+        SpinBox,                        // 调整框
     };
     Q_ENUM(EditType)  // 使用Q_ENUM声明后，可以将枚举的值和字符进行转换
     /*数据角色*/
     enum ItemUserRole
     {
         /*通用属性储存角色*/
+        //Qt::EditRole                  // 编辑值，显示值
         VarNameRole = Qt::UserRole,     // 值变量名称
         NameRole,                       // 值名称（中文）
         UnitRole,                       // 单位
@@ -56,20 +58,21 @@ public:
         DataTypeRole,                   // 数据类型，值采用QT自带的MetaType，用于标记内存变量类型
         EditTypeRole,                   // 编辑器类型 可定义单元格双击后弹出的编辑框
 
-        //EditRole                      // 编辑值
         DefaultValRole,                 // 默认值
         RangMinRole,                    // 标记输入上下限
         RangMaxRole,                    // 标记输入上下限
         StepRole,                       // 步进数（如步进为2，则值为2的倍数）
+
         RegexpRole,                     // 正则，启用后（只针对文本输入框，可设置限制某个字符不能输入，如空格）
-
         ContentRole,                    // 用于目录标签的显示
-
         DecimalRole,                    // 小数点位数
-
         ComboMapRole,                   // 控件数据填充源,针对多项选择的控件，如下拉框，
+
         /*辅助角色,非属性*/
-        TempRole,                       // 临时当前未修改的数据，用于修改撤销使用
+        TempEditRole,                   // 缓存值，当前未确认修改的数据（显示值），用于修改撤销使用
+        factorARole,                    // 实际值 = factorARole * EditRole + factorBRole
+        factorBRole,
+        ActlValRole,                    // 实际值 若没有对应的转换方式，则直接取显示值。
         StoreCtrlRole,                  // 储存操作，内存数据和模型数据的提交方向
     };
     Q_ENUM(ItemUserRole)
@@ -83,7 +86,7 @@ public:
     };
     Q_ENUM(StoreCtrl)
 
-    /*输入检测类型  主要针对文本框*/
+    /*输入检测类型  主要针对文本框  涉及到显示值和实际值转换的请到actlDispConvert添加对应的转换函数*/
     enum CheckType
     {
         String,                         // 输入字符   可以定义长度
@@ -137,8 +140,13 @@ public:
     /*静态函数initCheck，用于初始化表格编辑器和小控件的输入合法性的初始化*/
     static bool initEditor(QWidget *editor,const QModelIndex &index);   //
 
+    /*创建输入检测类，记得缩放内存*/
+    static QValidator* createValidator(const QModelIndex &index);   //
+
     /*事件过滤，可以将控件的一些事件过滤掉，如下表滚动*/
     bool eventFilter(QObject *editor, QEvent *event);
+
+
 
 private:
     //signals:

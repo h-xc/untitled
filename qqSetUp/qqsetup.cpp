@@ -6,9 +6,12 @@
 #include <QDebug>
 #include <QMap>
 #include <QToolTip>
+#include <QObject>
+#include <QMetaEnum>
 #include "..\\Public\\ModelView\\item_delegate.h"
 
 #define  XML_FILE_NAME     ".\\FaultFixVal.xml"
+
 
 qqSetUp::qqSetUp(QWidget *parent) :
     QWidget(parent),
@@ -17,14 +20,14 @@ qqSetUp::qqSetUp(QWidget *parent) :
     ui->setupUi(this);
 
     dataStore =new xmlDataStore(parent);
+    connect(this,SIGNAL(valChanged()),this,SLOT(valSlot()));
     dataStore->xmlFileName =XML_FILE_NAME;
     dataStore->fetchOfStore();
-
     ui->widget->setModles(&dataStore->m_Models);
-//    ui->faultSetModelView->setModel(dataStore->m_Models[0]->model);
-//    ui->lineSetModelView->setModel(dataStore->m_Models[1]->model);
-//    ui->KISetModelView->setModel(dataStore->m_Models[2]->model);
-//    ui->KOSetModelView->setModel(dataStore->m_Models[3]->model);
+    setProperty("val1",8);
+    qDebug() <<property("val1");
+    //mstruct.val1 = 5;
+
 }
 
 qqSetUp::~qqSetUp()

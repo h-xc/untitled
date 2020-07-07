@@ -25,13 +25,14 @@ public:
     void setModles(QList<ModelStruct *> *Models);
     void clear();
 
+    void initTableView();
+
 protected:
     void  addContent(int &GridRow,QString label);
     const  QList<ModelStruct *>   *m_Models;
 
 private:
     void initWidget();
-
 
 private slots:
     void slotItemClicked(QListWidgetItem *item);
@@ -45,7 +46,6 @@ private:
     QGridLayout *gridLayout;
 
     bool   contentsItemClicked;   //标记是否点击了目录导航 false 无操作  true 正在操作
-    QSpacerItem *vSpacer;
 
     bool eventFilter(QObject *, QEvent *);  //事件过滤器，当滑动表格时，先屏蔽窗口的滑动事件
     void resizeEvent(QResizeEvent* size);
