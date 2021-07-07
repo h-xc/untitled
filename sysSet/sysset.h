@@ -8,6 +8,8 @@ namespace Ui {
 class sysSet;
 }
 
+
+
 class sysSet : public QWidget
 {
     Q_OBJECT

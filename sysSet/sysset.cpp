@@ -25,7 +25,6 @@ sysSet::sysSet(QWidget *parent) :
     }
 
     ui->listView->setModel(&model);
-    ui->listView->setModel(&model);
 }
 
 sysSet::~sysSet()

@@ -4,4 +4,7 @@
         <file alias="options">qqSetUp/Image/options.png</file>
         <file alias="close">qqSetUp/Image/close.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>qmlTest.qml</file>
+    </qresource>
 </RCC>

@@ -48,21 +48,9 @@ public:
     xmlDataStore *dataStore;
 private:
     Ui::qqSetUp *ui;
-
     Mystruct mstruct;
 
-    Q_PROPERTY(int val1 READ hasVal1 WRITE setVal1 NOTIFY valChanged)
-    int hasVal1(){return mstruct.val1;}
-    void setVal1(int val1){mstruct.val1 = val1;}
-
-signals:
-    void valChanged();
 public slots:
-    void valSlot()
-    {
-        qDebug() << "valSlot:";
-    }
-
 };
 
 #endif // QQSETUP_H
