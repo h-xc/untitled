@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGridLayout>
+
+#define COLNUM_COUNT 2
 
 namespace Ui {
 class MainWindow;
@@ -15,25 +18,21 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void addWidget(QWidget *pWidget);
+
+private:
+    int  m_widgetCount;
+
 private slots:
-    void on_qqSetUp_clicked();
-
-    void on_LayoutTest_clicked();
-
-    void on_sysSet_clicked();
+    void on_pushButton_clicked();
 
     void on_QMLSet_clicked();
 
-    void on_WinCMD_clicked();
-
-    void on_Socket_clicked();
-
-    void on_layoutForm_clicked();
-
-    void on_pushButton_clicked();
+    void on_codeTest_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QGridLayout *m_GLayout;
 };
 
 #endif // MAINWINDOW_H

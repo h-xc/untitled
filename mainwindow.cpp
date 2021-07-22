@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QQuickView>
 #include "./qqSetUp/qqsetup.h"
 #include "./LayoutTest/layouttest.h"
 #include "./sysSet/sysset.h"
@@ -9,13 +10,51 @@
 #include "./LayoutForm/layoutform.h"
 #include "./StruOffse/struoffse.h"
 
-#include <QQuickView>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    m_widgetCount(0),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    m_GLayout = qobject_cast<QGridLayout *>(ui->centralWidget->layout());
+    QWidget *pWidget;
+
+    pWidget = new qqSetUp();
+    pWidget->setWindowTitle(tr("QQ设置面板"));
+    addWidget(pWidget);
+
+    pWidget = new LayoutTest();
+    pWidget->setWindowTitle(tr("UI布局测试"));
+    addWidget(pWidget);
+
+    pWidget = new sysSet();
+    pWidget->setWindowTitle(tr("系统设置"));
+    addWidget(pWidget);
+
+    //
+    QPushButton *qPushButton = new QPushButton(tr("QML测试"),this);
+    connect(qPushButton,SIGNAL(clicked(bool)),this,SLOT(on_QMLSet_clicked()));
+    m_GLayout->addWidget(qPushButton,m_widgetCount/COLNUM_COUNT,m_widgetCount%COLNUM_COUNT);
+    m_widgetCount++;
+
+    pWidget = new WinCMD();
+    pWidget->setWindowTitle(tr("WinCMD"));
+    addWidget(pWidget);
+
+    pWidget = new Socket();
+    pWidget->setWindowTitle(tr("Socket"));
+    addWidget(pWidget);
+
+    pWidget = new layoutForm();
+    pWidget->setWindowTitle(tr("布局间隔"));
+    addWidget(pWidget);
+
+    qPushButton = new QPushButton(tr("代码测试"),this);
+    connect(qPushButton,SIGNAL(clicked(bool)),this,SLOT(on_codeTest_clicked()));
+    m_GLayout->addWidget(qPushButton,m_widgetCount/COLNUM_COUNT,m_widgetCount%COLNUM_COUNT);
+    m_widgetCount++;
 }
 
 MainWindow::~MainWindow()
@@ -23,24 +62,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_qqSetUp_clicked()
+void MainWindow::addWidget(QWidget *pWidget)
 {
-    QWidget *widget = new qqSetUp;
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
+    QPushButton *qPushButton = new QPushButton(pWidget->windowTitle(),this);
+    connect(qPushButton,SIGNAL(clicked(bool)),this,SLOT(on_pushButton_clicked()));
+    qPushButton->setProperty("showWidget",QVariant::fromValue<void*>(pWidget));
+    m_GLayout->addWidget(qPushButton,m_widgetCount/COLNUM_COUNT,m_widgetCount%COLNUM_COUNT);
+    m_widgetCount++;
 }
 
-void MainWindow::on_LayoutTest_clicked()
+void MainWindow::on_pushButton_clicked()
 {
-    QWidget *widget = new LayoutTest;
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void MainWindow::on_sysSet_clicked()
-{
-    QWidget *widget = new sysSet;
-    widget->setAttribute(Qt::WA_DeleteOnClose);
+    QPushButton *qPushButton = qobject_cast<QPushButton *>(sender());
+    QWidget *widget = (QWidget *)qPushButton->property("showWidget").value<void*>();
+    //widget->setAttribute(Qt::WA_DeleteOnClose);
     widget->show();
 }
 
@@ -52,28 +87,7 @@ void MainWindow::on_QMLSet_clicked()
     viewer->show();
 }
 
-void MainWindow::on_WinCMD_clicked()
-{
-    QWidget *widget = new WinCMD;
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void MainWindow::on_Socket_clicked()
-{
-    QWidget *widget = new Socket;
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void MainWindow::on_layoutForm_clicked()
-{
-    QWidget *widget = new layoutForm;
-    widget->setAttribute(Qt::WA_DeleteOnClose);
-    widget->show();
-}
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_codeTest_clicked()
 {
     struOffse stru;
 }

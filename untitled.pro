@@ -39,6 +39,7 @@ SOURCES += \
         qqSetUp/qqsetup.cpp \
     LayoutTest/layouttest.cpp \
     Public/ModelView/xmldatastore.cpp \
+    setTime/SetTime.cpp \
     sysSet/sysset.cpp \
     WinCMD/winCmd.cpp \
     Socket/socket.cpp \
@@ -59,6 +60,7 @@ HEADERS += \
         qqSetUp/qqsetup.h \
     LayoutTest/layouttest.h \
     Public/ModelView/xmldatastore.h \
+    setTime/SetTime.h \
     sysSet/sysset.h \
     WinCMD/winCmd.h \
     Socket/socket.h \
@@ -70,6 +72,7 @@ FORMS += \
         mainwindow.ui \
         qqSetUp/qqsetup.ui \
     LayoutTest/layouttest.ui \
+    setTime/SetTime.ui \
     sysSet/sysset.ui \
     WinCMD/winCmd.ui \
     Socket/socket.ui \
