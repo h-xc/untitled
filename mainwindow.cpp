@@ -9,7 +9,7 @@
 #include "./Socket/socket.h"
 #include "./LayoutForm/layoutform.h"
 #include "./StruOffse/struoffse.h"
-
+#include "./SetTime/SetTime.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -55,6 +55,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(qPushButton,SIGNAL(clicked(bool)),this,SLOT(on_codeTest_clicked()));
     m_GLayout->addWidget(qPushButton,m_widgetCount/COLNUM_COUNT,m_widgetCount%COLNUM_COUNT);
     m_widgetCount++;
+
+
+    pWidget = new SelDateTimeWidget();
+    pWidget->setWindowTitle(tr("时间设置"));
+    addWidget(pWidget);
 }
 
 MainWindow::~MainWindow()

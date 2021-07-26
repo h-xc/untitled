@@ -1,0 +1,81 @@
+/*注意：不能用//注释*/
+/*RadioButton和checkbox字体和间距设置*/
+QRadioButton ,QCheckBox{
+  /*width: 200px;*/
+    spacing: 2px;
+  /*font-size: 32px;*/
+    color: black;
+}
+/*checkbox样式设置--宽高大小*/
+QCheckBox::indicator {
+    width: 64px;
+    height: 32px;
+    /*position: relative;*/
+    /*subcontrol-origin: padding;*/
+    /*subcontrol-position: right;         设置勾选框的位置--无效果*/
+}
+/*未选中样式*/
+QCheckBox::indicator:unchecked {
+    image: url(:/setTime/setTime/Img/QssImg/swichoff2.png);
+}
+/*选中样式*/
+QCheckBox::indicator:checked {
+    image: url(:/setTime/setTime/Img/QssImg/swichon2.png);
+}
+QLineEdit, QAbstractSpinBox{
+    /*background-color: #45494a;*/
+    /*background-origin: border;*/
+    /*border: 1px solid #646464;*/
+    /*color: #bbbbbb;*/
+    /*min-width: 64px;*/
+    /*padding: 0px 1px 2px 3px;*/
+    /*selection-background-color: #4b6eaf;*/
+}
+/*spinbox 加样式*/
+QDateTimeEdit::up-button,QTimeEdit::up-button,QDoubleSpinBox::up-button,QSpinBox::up-button {
+    subcontrol-origin:border;
+    subcontrol-position:right;
+    image: url(:/setTime/setTime/Img/QssImg/add1.png);
+    width: 32px;
+    height: 24px;
+}
+/*spinbox 减样式*/
+QDateTimeEdit::down-button,QTimeEdit::down-button,QDoubleSpinBox::down-button,QSpinBox::down-button {
+    subcontrol-origin:border;
+    subcontrol-position:left;
+    image: url(:/setTime/setTime/Img/QssImg/dec1.png);
+    width: 32px;
+    height: 24px;
+}
+/*按钮按下样式
+QDateTimeEdit::up-button:pressed,QTimeEdit::up-button:pressed,QDoubleSpinBox::up-button:pressed,QSpinBox::up-button:pressed{
+    subcontrol-origin:border;
+    subcontrol-position:right;
+    image: url(:/image/add_click.png);
+    width: 60px;
+    height: 60px;
+}
+
+QDateTimeEdit::down-button:pressed,QTimeEdit::down-button:pressed,QDoubleSpinBox::down-button:pressed,QSpinBox::down-button:pressed{
+    subcontrol-position:left;
+    image: url(:/image/reduce_click.png);
+    width: 60px;
+    height: 60px;}
+}*/
+/* 下拉后，整个下拉窗体每项的样式 */
+QComboBox QAbstractItemView::item {
+    height: 32px;   /* 项的高度（设置pComboBox->setView(new QListView());后，该项才起作用） */
+}
+/* QComboBox中的垂直滚动条 */
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+    width: 16px;
+    background-color: #d0d2d4;   /* 空白区域的背景色*/
+}
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+    border-radius: 5px;   /* 圆角 */
+    background: rgb(160,160,160);   /* 小方块的背景色深灰lightblue */
+}
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
+    background: rgb(90, 91, 93);   /* 越过小方块的背景色yellow */
+}

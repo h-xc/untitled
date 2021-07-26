@@ -4,7 +4,14 @@
         <file alias="options">qqSetUp/Image/options.png</file>
         <file alias="close">qqSetUp/Image/close.png</file>
     </qresource>
-    <qresource prefix="/">
+    <qresource prefix="/QML">
         <file>qmlTest.qml</file>
+    </qresource>
+    <qresource lang="qss" prefix="/setTime">
+        <file>setTime/Qss/style.qss</file>
+        <file>setTime/Img/QssImg/add1.png</file>
+        <file>setTime/Img/QssImg/dec1.png</file>
+        <file>setTime/Img/QssImg/swichoff2.png</file>
+        <file>setTime/Img/QssImg/swichon2.png</file>
     </qresource>
 </RCC>

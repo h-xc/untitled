@@ -26,6 +26,8 @@ Makefile*
 # QtCreator
  
 *.autosave
+*.xml
+*.exe
 
 /Debug
 /Release

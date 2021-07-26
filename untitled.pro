@@ -40,6 +40,7 @@ SOURCES += \
     LayoutTest/layouttest.cpp \
     Public/ModelView/xmldatastore.cpp \
     setTime/SetTime.cpp \
+    setTime/VerticalScroll.cpp \
     sysSet/sysset.cpp \
     WinCMD/winCmd.cpp \
     Socket/socket.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     LayoutTest/layouttest.h \
     Public/ModelView/xmldatastore.h \
     setTime/SetTime.h \
+    setTime/VerticalScroll.h \
     sysSet/sysset.h \
     WinCMD/winCmd.h \
     Socket/socket.h \
